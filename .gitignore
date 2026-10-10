@@ -1,8 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
 .venv/
 venv/
-__pycache__/
-*.pyc
+env/
+
+# Environment variables
 .env
-.streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
 .DS_Store
+
+# Testing
 .pytest_cache/
+.coverage
+htmlcov/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log

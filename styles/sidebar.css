@@ -1,0 +1,417 @@
+
+/* ================================================
+   BLUE MOON APARTMENTS - RESIDENT SIDEBAR
+   ================================================ */
+
+:root {
+    --bm-sidebar: #09182c;
+    --bm-border: #203047;
+    --bm-muted: #9eafc4;
+    --bm-active: #28364b;
+}
+
+/* Sidebar native layout */
+
+section[data-testid="stSidebar"] {
+    width: 250px !important;
+    min-width: 250px !important;
+    background: var(--bm-sidebar) !important;
+    border-right: 1px solid var(--bm-border);
+}
+
+section[data-testid="stSidebar"] > div {
+    background: var(--bm-sidebar) !important;
+}
+
+[data-testid="stSidebarUserContent"] {
+    padding: 12px 12px 8px !important;
+}
+
+/* Reduce Streamlit's default spacing */
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_layout [data-testid="stVerticalBlock"] {
+    gap: 0.15rem !important;
+}
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_layout > div[data-testid="stVerticalBlock"] {
+    min-height: calc(100dvh - 75px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Brand */
+
+.blue-moon-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100%;
+    padding: 6px 4px 16px !important;
+}
+
+.moon-logo {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #153f78;
+    border: 1px solid #2970b7;
+    border-radius: 50%;
+
+    color: #ffffff !important;
+    font-size: 23px;
+}
+
+.brand-information {
+    min-width: 0;
+}
+
+.brand-title {
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 700;
+}
+
+.brand-subtitle {
+    color: #8498b1 !important;
+    font-size: 9px !important;
+    letter-spacing: 0.4px;
+    margin-top: 3px;
+}
+
+/* Account badge */
+
+.account-badge-wrapper {
+    border-top: 1px solid var(--bm-border);
+    padding: 13px 4px 6px;
+}
+
+.account-badge {
+    display: inline-block;
+    padding: 4px 9px;
+    margin: 0 !important;
+
+    border-radius: 4px;
+    background: #0a4438;
+    color: #3ee996 !important;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Section headings */
+
+.sidebar-section-title {
+    padding-left: 8px;
+    margin-top: 15px;
+    margin-bottom: 6px;
+
+    color: #627a96 !important;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.assistant-title {
+    margin-top: 20px;
+}
+
+/* =================================================
+   FIX BUTTON ALIGNMENT
+   ================================================= */
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button {
+    position: relative !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    height: 36px !important;
+    min-height: 36px !important;
+
+    gap: 11px !important;
+    padding: 7px 10px !important;
+    margin: 0 !important;
+
+    background: transparent;
+    color: var(--bm-muted) !important;
+
+    border: none !important;
+    border-radius: 19px !important;
+    box-shadow: none !important;
+
+    font-size: 12px !important;
+    font-weight: 500;
+    text-align: left !important;
+}
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button
+[data-testid="stMarkdownContainer"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    flex: 0 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button p {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: inherit !important;
+    font-size: 12px !important;
+    font-weight: inherit;
+
+    white-space: nowrap;
+    text-align: left !important;
+}
+
+/* Consistent icon sizing */
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button
+span[data-testid="stIconMaterial"],
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button
+span.material-symbols-rounded {
+    width: 18px !important;
+    min-width: 18px !important;
+    flex: 0 0 18px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 17px !important;
+    color: inherit !important;
+}
+
+/* Hover */
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button:hover {
+    background: #223249 !important;
+    color: #ffffff !important;
+}
+
+/* Keyboard accessibility */
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"] button:focus-visible {
+    outline: 2px solid #4b9bff !important;
+    outline-offset: 2px;
+}
+
+/* Notification badge */
+
+[data-testid="stSidebar"]
+.st-key-nav_notifications button::after {
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+}
+
+/* =================================================
+   RESIDENT FOOTER
+   ================================================= */
+
+[data-testid="stSidebar"] .st-key-bm_sidebar_footer {
+    margin-top: auto !important;
+    position: sticky;
+    bottom: 0;
+
+    padding: 12px 3px 8px !important;
+    border-top: 1px solid var(--bm-border);
+    background: var(--bm-sidebar);
+
+    z-index: 1;
+}
+
+.resident-profile {
+    display: flex !important;
+    align-items: center;
+    gap: 9px !important;
+
+    width: 100%;
+    padding: 0 !important;
+}
+
+.resident-avatar {
+    width: 29px !important;
+    height: 29px !important;
+    min-width: 29px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1766ad;
+    border-radius: 50%;
+
+    color: #ffffff !important;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.resident-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.resident-name {
+    color: #ffffff !important;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.resident-unit {
+    color: #8499b2 !important;
+    font-size: 9px;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+/* Logout */
+
+[data-testid="stSidebar"]
+.st-key-logout_button button {
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center !important;
+
+    background: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+
+    padding: 4px !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stSidebar"]
+.st-key-logout_button button:hover {
+    background: #223249 !important;
+}
+
+[data-testid="stSidebar"]
+.st-key-logout_button button p {
+    display: none !important;
+}
+
+/* Native sidebar collapse and reopen */
+
+header[data-testid="stHeader"],
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="stSidebarCollapseButton"] {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Smaller displays */
+
+@media (max-width: 768px) {
+    section[data-testid="stSidebar"] {
+        width: 250px !important;
+        min-width: 250px !important;
+    }
+}
+
+
+/* ================================================
+   FINAL FIX — LEFT-ALIGN SIDEBAR NAVIGATION
+   ================================================ */
+
+/* Navigation button layout */
+
+section[data-testid="stSidebar"]
+[class*="st-key-nav_"] button {
+    display: grid !important;
+
+    grid-template-columns: 18px minmax(0, 1fr) auto !important;
+
+    align-items: center !important;
+    justify-items: start !important;
+
+    column-gap: 10px !important;
+
+    width: 100% !important;
+
+    padding-left: 12px !important;
+    padding-right: 10px !important;
+
+    text-align: left !important;
+}
+
+/* Icons — fixed position on the left */
+
+section[data-testid="stSidebar"]
+[class*="st-key-nav_"] button
+span[data-testid="stIconMaterial"] {
+    grid-column: 1 !important;
+
+    width: 18px !important;
+    min-width: 18px !important;
+
+    margin: 0 !important;
+
+    justify-self: center !important;
+}
+
+/* Navigation labels — directly beside icons */
+
+section[data-testid="stSidebar"]
+[class*="st-key-nav_"] button
+[data-testid="stMarkdownContainer"] {
+    grid-column: 2 !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: left !important;
+    justify-self: start !important;
+}
+
+section[data-testid="stSidebar"]
+[class*="st-key-nav_"] button p {
+    margin: 0 !important;
+
+    text-align: left !important;
+    white-space: nowrap !important;
+}
+
+/* Notification count — right side */
+
+section[data-testid="stSidebar"]
+.st-key-nav_notifications button::after {
+    grid-column: 3 !important;
+
+    justify-self: end !important;
+    margin-left: 0 !important;
+}
+
+/* Keep active-page blue indicator unchanged */
+

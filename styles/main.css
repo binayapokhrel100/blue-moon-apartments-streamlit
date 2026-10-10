@@ -5,18 +5,14 @@
    ===================================================== */
 
 
-/* =====================================================
-   1. APP
-   ===================================================== */
+/* ---------- APP ---------- */
 
 .stApp {
     background-color: #eef3f9;
 }
 
 
-/* =====================================================
-   2. MAIN CONTENT
-   ===================================================== */
+/* ---------- MAIN CONTENT ---------- */
 
 .block-container {
     padding-top: 1.5rem;
@@ -27,9 +23,7 @@
 }
 
 
-/* =====================================================
-   3. SIDEBAR
-   ===================================================== */
+/* ---------- SIDEBAR ---------- */
 
 [data-testid="stSidebar"] {
     background-color: #081a30;
@@ -44,24 +38,8 @@
     color: #d7e2ef;
 }
 
-/* Keep sidebar collapse control accessible */
 
-[data-testid="stSidebarCollapseButton"],
-[data-testid="stSidebar"] button[kind="header"] {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Sidebar icon colors */
-
-[data-testid="stSidebar"] svg {
-    color: #d7e2ef;
-}
-
-
-/* =====================================================
-   4. BRAND
-   ===================================================== */
+/* ---------- BRAND ---------- */
 
 .blue-moon-brand {
     display: flex;
@@ -83,7 +61,7 @@
     background: #153f78;
     border: 2px solid #225998;
 
-    color: #ffffff;
+    color: white;
 
     font-size: 27px;
 }
@@ -105,9 +83,7 @@
 }
 
 
-/* =====================================================
-   5. RESIDENT ACCOUNT BADGE
-   ===================================================== */
+/* ---------- RESIDENT BADGE ---------- */
 
 .account-badge {
     display: inline-block;
@@ -129,9 +105,7 @@
 }
 
 
-/* =====================================================
-   6. SIDEBAR SECTION HEADINGS
-   ===================================================== */
+/* ---------- SIDEBAR SECTION ---------- */
 
 .sidebar-section-title {
     color: #536c89 !important;
@@ -146,16 +120,10 @@
 }
 
 
-/* =====================================================
-   7. SIDEBAR NAVIGATION BUTTONS
-   ===================================================== */
+/* ---------- SIDEBAR BUTTONS ---------- */
 
 [data-testid="stSidebar"] .stButton > button {
     width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
 
     background: transparent;
 
@@ -171,9 +139,7 @@
     font-size: 14px;
     font-weight: 500;
 
-    transition:
-        background-color 0.15s ease-in-out,
-        color 0.15s ease-in-out;
+    transition: 0.15s ease-in-out;
 }
 
 [data-testid="stSidebar"] .stButton > button:hover {
@@ -194,19 +160,8 @@
     box-shadow: none;
 }
 
-[data-testid="stSidebar"] .stButton > button:focus-visible {
-    outline: 2px solid #75b5ff;
-    outline-offset: 2px;
-}
 
-[data-testid="stSidebar"] .stButton > button p {
-    text-align: left;
-}
-
-
-/* =====================================================
-   8. USER PROFILE
-   ===================================================== */
+/* ---------- USER PROFILE ---------- */
 
 .resident-profile {
     display: flex;
@@ -233,9 +188,10 @@
 
     background: #1766ad;
 
-    color: #ffffff !important;
+    color: white !important;
 
     font-size: 12px;
+
     font-weight: 700;
 }
 
@@ -243,6 +199,7 @@
     color: #ffffff !important;
 
     font-size: 12px;
+
     font-weight: 600;
 }
 
@@ -255,9 +212,7 @@
 }
 
 
-/* =====================================================
-   9. PAGE HEADER
-   ===================================================== */
+/* ---------- HEADER ---------- */
 
 .page-header {
     background-color: #ffffff;
@@ -280,14 +235,13 @@
 }
 
 
-/* =====================================================
-   10. PAGE TITLE
-   ===================================================== */
+/* ---------- PAGE TITLE ---------- */
 
 .page-title {
     color: #071a35;
 
     font-size: 30px;
+
     font-weight: 750;
 
     margin-bottom: 3px;
@@ -302,9 +256,7 @@
 }
 
 
-/* =====================================================
-   11. DASHBOARD METRIC CARDS
-   ===================================================== */
+/* ---------- METRIC CARDS ---------- */
 
 .metric-card {
     background: #ffffff;
@@ -324,6 +276,7 @@
     color: #70839a;
 
     font-size: 12px;
+
     font-weight: 600;
 
     margin-bottom: 13px;
@@ -333,6 +286,7 @@
     color: #071a35;
 
     font-size: 27px;
+
     font-weight: 750;
 
     margin-bottom: 5px;
@@ -345,9 +299,7 @@
 }
 
 
-/* =====================================================
-   12. CONTENT CARDS
-   ===================================================== */
+/* ---------- CONTENT CARDS ---------- */
 
 .content-card {
     background: #ffffff;
@@ -372,9 +324,7 @@
 }
 
 
-/* =====================================================
-   13. RECENT ACTIVITY
-   ===================================================== */
+/* ---------- ACTIVITY ---------- */
 
 .activity-row {
     padding: 14px 0;
@@ -408,9 +358,7 @@
 }
 
 
-/* =====================================================
-   14. UPCOMING EVENTS
-   ===================================================== */
+/* ---------- UPCOMING ---------- */
 
 .upcoming-item {
     padding: 13px 0;
@@ -443,53 +391,7 @@
 }
 
 
-/* =====================================================
-   15. STREAMLIT HEADER & SIDEBAR CONTROLS
-   ===================================================== */
-
-/*
-   IMPORTANT:
-   Never hide the entire header with:
-
-   header {
-       visibility: hidden;
-   }
-
-   Streamlit may place the collapsed sidebar
-   reopening control inside its application header.
-*/
-
-header[data-testid="stHeader"] {
-    visibility: visible;
-}
-
-/* Keep the sidebar reopening control accessible */
-
-[data-testid="stSidebarCollapsedControl"] {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Keep sidebar control buttons visible */
-
-[data-testid="stSidebarCollapsedControl"] button,
-[data-testid="stSidebarCollapseButton"] button {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Ensure collapsed control icon is readable */
-
-[data-testid="stSidebarCollapsedControl"] svg {
-    color: #153f78;
-}
-
-/* Avoid hiding the entire toolbar or app header */
-
-
-/* =====================================================
-   16. REMOVE UNNECESSARY STREAMLIT DECORATION
-   ===================================================== */
+/* ---------- STREAMLIT UI CLEANUP ---------- */
 
 #MainMenu {
     visibility: hidden;
@@ -499,14 +401,20 @@ footer {
     visibility: hidden;
 }
 
+/* Keep Streamlit's header visible so users
+   can reopen the collapsed sidebar. */
+
+header[data-testid="stHeader"] {
+    visibility: visible;
+}
+
 
 /* =====================================================
-   17. LOGIN PAGE BRAND
+   LOGIN PAGE
    ===================================================== */
 
 .login-brand {
     text-align: center;
-
     margin-top: 3rem;
     margin-bottom: 2rem;
 }
@@ -550,15 +458,12 @@ footer {
     color: #71839a;
 
     font-size: 10px;
+
     font-weight: 700;
 
     letter-spacing: 1.5px;
 }
 
-
-/* =====================================================
-   18. LOGIN FORM HEADING
-   ===================================================== */
 
 .login-heading {
     text-align: center;
@@ -581,23 +486,19 @@ footer {
 }
 
 
-/* =====================================================
-   19. LOGIN INPUTS
-   ===================================================== */
+/* ---------- INPUTS ---------- */
 
 div[data-baseweb="input"] {
     border-radius: 8px;
 }
 
 
-/* =====================================================
-   20. LOGIN FORM BUTTON
-   ===================================================== */
+/* ---------- FORM BUTTON ---------- */
 
 div[data-testid="stFormSubmitButton"] button {
     background-color: #153f78;
 
-    color: #ffffff;
+    color: white;
 
     border: none;
 
@@ -606,28 +507,18 @@ div[data-testid="stFormSubmitButton"] button {
     height: 45px;
 
     font-weight: 600;
-
-    transition:
-        background-color 0.15s ease-in-out;
 }
 
 div[data-testid="stFormSubmitButton"] button:hover {
     background-color: #0d315f;
 
-    color: #ffffff;
+    color: white;
 
     border: none;
 }
 
-div[data-testid="stFormSubmitButton"] button:focus-visible {
-    outline: 2px solid #75b5ff;
-    outline-offset: 2px;
-}
 
-
-/* =====================================================
-   21. DEMO ACCOUNT HELP
-   ===================================================== */
+/* ---------- DEMO ACCOUNT HELP ---------- */
 
 .login-help {
     margin-top: 25px;
@@ -659,7 +550,7 @@ div[data-testid="stFormSubmitButton"] button:focus-visible {
 
 
 /* =====================================================
-   22. RESPONSIVE DESIGN
+   RESPONSIVE DESIGN
    ===================================================== */
 
 @media (max-width: 1024px) {
@@ -682,11 +573,6 @@ div[data-testid="stFormSubmitButton"] button:focus-visible {
         padding: 20px;
     }
 }
-
-
-/* =====================================================
-   23. MOBILE LAYOUT
-   ===================================================== */
 
 @media (max-width: 768px) {
 
@@ -741,7 +627,9 @@ div[data-testid="stFormSubmitButton"] button:focus-visible {
         font-size: 30px;
     }
 }
-/* ---------- SIDEBAR BRAND & PROFILE FIX ---------- */
+
+
+/* ---------- SIDEBAR BRAND & PROFILE ---------- */
 
 .blue-moon-brand {
     width: 100%;
@@ -769,6 +657,194 @@ div[data-testid="stFormSubmitButton"] button:focus-visible {
 .resident-name,
 .resident-unit {
     overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   PAYMENTS
+   ===================================================== */
+
+.section-heading {
+    margin-bottom: 16px;
+}
+
+.section-heading h3 {
+    color: #071a35;
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.section-heading p {
+    color: #71839a;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+.payment-summary-card {
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 14px;
+    padding: 24px;
+
+    box-shadow:
+        0 2px 5px rgba(0, 25, 55, 0.04);
+}
+
+.payment-summary-card h3 {
+    color: #071a35;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.summary-row span {
+    color: #70839a;
+    font-size: 13px;
+}
+
+.summary-row strong {
+    color: #142a47;
+    font-size: 14px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 14px;
+}
+
+.summary-total span {
+    color: #70839a;
+    font-size: 13px;
+}
+
+.summary-total strong {
+    color: #166534;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+   ===================================================== */
+
+.notification-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    padding: 20px;
+    margin-bottom: 10px;
+
+    box-shadow:
+        0 2px 5px rgba(0, 25, 55, 0.04);
+}
+
+.notification-alert {
+    border-left: 4px solid #dc2626;
+}
+
+.notification-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.notification-payment {
+    background: #dcfce7;
+    color: #159447;
+}
+
+.notification-maintenance {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.notification-announcement {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.notification-security {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.notification-community {
+    background: #dbeafe;
+    color: #2470b8;
+}
+
+.notification-general {
+    background: #e5e7eb;
+    color: #475569;
+}
+
+.notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-title {
+    color: #071a35;
+    font-size: 15px;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notification-message {
+    color: #5f7590;
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+.notification-date {
+    color: #8da0b7;
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.unread-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1d67ad;
+}
+
+.alert-badge {
+    display: inline-block;
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
 }
 
 /* =====================================================

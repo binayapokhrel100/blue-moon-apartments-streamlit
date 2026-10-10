@@ -1,14 +1,26 @@
+
 from pathlib import Path
 
 import streamlit as st
 
 
-def load_css():
-    css_file = Path(__file__).parent.parent / "styles" / "main.css"
+def load_css() -> None:
+    """Load Blue Moon application and sidebar styles."""
 
-    if css_file.exists():
-        with open(css_file, "r", encoding="utf-8") as file:
-            st.markdown(
-                f"<style>{file.read()}</style>",
-                unsafe_allow_html=True,
-            )
+    styles_dir = (
+        Path(__file__).resolve().parent.parent / "styles"
+    )
+
+    for filename in ["main.css", "sidebar.css"]:
+
+        css_file = styles_dir / filename
+
+        if not css_file.exists():
+            continue
+
+        css = css_file.read_text(encoding="utf-8")
+
+        st.markdown(
+            f"<style>{css}</style>",
+            unsafe_allow_html=True,
+        )

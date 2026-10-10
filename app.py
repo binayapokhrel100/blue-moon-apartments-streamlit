@@ -1,3 +1,10 @@
+from views.notifications import (
+    render_notifications,
+)
+
+from views.payments import (
+    render_payments,
+)
 import streamlit as st
 
 from components.sidebar import render_sidebar
@@ -22,11 +29,9 @@ st.set_page_config(
 
 
 PAGE_TITLES = {
-    "payments": "Payments",
     "maintenance": "Maintenance",
     "announcements": "Announcements",
     "community_news": "Community News",
-    "notifications": "Notifications",
     "lease": "My Lease",
     "profile": "Profile",
     "security": "Security",
@@ -53,6 +58,13 @@ def main():
     if current_page == "dashboard":
 
         render_dashboard()
+    elif current_page == "payments":
+
+        render_payments()
+
+    elif current_page == "notifications":
+
+        render_notifications()
 
     elif current_page in PAGE_TITLES:
 

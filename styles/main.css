@@ -1,17 +1,22 @@
+
 /* =====================================================
    BLUE MOON APARTMENTS
    Main Streamlit Theme
    ===================================================== */
 
 
-/* ---------- APP ---------- */
+/* =====================================================
+   1. APP
+   ===================================================== */
 
 .stApp {
     background-color: #eef3f9;
 }
 
 
-/* ---------- MAIN CONTENT ---------- */
+/* =====================================================
+   2. MAIN CONTENT
+   ===================================================== */
 
 .block-container {
     padding-top: 1.5rem;
@@ -22,7 +27,9 @@
 }
 
 
-/* ---------- SIDEBAR ---------- */
+/* =====================================================
+   3. SIDEBAR
+   ===================================================== */
 
 [data-testid="stSidebar"] {
     background-color: #081a30;
@@ -37,8 +44,24 @@
     color: #d7e2ef;
 }
 
+/* Keep sidebar collapse control accessible */
 
-/* ---------- BRAND ---------- */
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stSidebar"] button[kind="header"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Sidebar icon colors */
+
+[data-testid="stSidebar"] svg {
+    color: #d7e2ef;
+}
+
+
+/* =====================================================
+   4. BRAND
+   ===================================================== */
 
 .blue-moon-brand {
     display: flex;
@@ -60,7 +83,7 @@
     background: #153f78;
     border: 2px solid #225998;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 27px;
 }
@@ -82,7 +105,9 @@
 }
 
 
-/* ---------- RESIDENT BADGE ---------- */
+/* =====================================================
+   5. RESIDENT ACCOUNT BADGE
+   ===================================================== */
 
 .account-badge {
     display: inline-block;
@@ -104,7 +129,9 @@
 }
 
 
-/* ---------- SIDEBAR SECTION ---------- */
+/* =====================================================
+   6. SIDEBAR SECTION HEADINGS
+   ===================================================== */
 
 .sidebar-section-title {
     color: #536c89 !important;
@@ -119,10 +146,16 @@
 }
 
 
-/* ---------- SIDEBAR BUTTONS ---------- */
+/* =====================================================
+   7. SIDEBAR NAVIGATION BUTTONS
+   ===================================================== */
 
 [data-testid="stSidebar"] .stButton > button {
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
     background: transparent;
 
@@ -138,7 +171,9 @@
     font-size: 14px;
     font-weight: 500;
 
-    transition: 0.15s ease-in-out;
+    transition:
+        background-color 0.15s ease-in-out,
+        color 0.15s ease-in-out;
 }
 
 [data-testid="stSidebar"] .stButton > button:hover {
@@ -159,8 +194,19 @@
     box-shadow: none;
 }
 
+[data-testid="stSidebar"] .stButton > button:focus-visible {
+    outline: 2px solid #75b5ff;
+    outline-offset: 2px;
+}
 
-/* ---------- USER PROFILE ---------- */
+[data-testid="stSidebar"] .stButton > button p {
+    text-align: left;
+}
+
+
+/* =====================================================
+   8. USER PROFILE
+   ===================================================== */
 
 .resident-profile {
     display: flex;
@@ -187,10 +233,9 @@
 
     background: #1766ad;
 
-    color: white !important;
+    color: #ffffff !important;
 
     font-size: 12px;
-
     font-weight: 700;
 }
 
@@ -198,7 +243,6 @@
     color: #ffffff !important;
 
     font-size: 12px;
-
     font-weight: 600;
 }
 
@@ -211,7 +255,9 @@
 }
 
 
-/* ---------- HEADER ---------- */
+/* =====================================================
+   9. PAGE HEADER
+   ===================================================== */
 
 .page-header {
     background-color: #ffffff;
@@ -234,13 +280,14 @@
 }
 
 
-/* ---------- PAGE TITLE ---------- */
+/* =====================================================
+   10. PAGE TITLE
+   ===================================================== */
 
 .page-title {
     color: #071a35;
 
     font-size: 30px;
-
     font-weight: 750;
 
     margin-bottom: 3px;
@@ -255,7 +302,9 @@
 }
 
 
-/* ---------- METRIC CARDS ---------- */
+/* =====================================================
+   11. DASHBOARD METRIC CARDS
+   ===================================================== */
 
 .metric-card {
     background: #ffffff;
@@ -275,7 +324,6 @@
     color: #70839a;
 
     font-size: 12px;
-
     font-weight: 600;
 
     margin-bottom: 13px;
@@ -285,7 +333,6 @@
     color: #071a35;
 
     font-size: 27px;
-
     font-weight: 750;
 
     margin-bottom: 5px;
@@ -298,7 +345,9 @@
 }
 
 
-/* ---------- CONTENT CARDS ---------- */
+/* =====================================================
+   12. CONTENT CARDS
+   ===================================================== */
 
 .content-card {
     background: #ffffff;
@@ -323,7 +372,9 @@
 }
 
 
-/* ---------- ACTIVITY ---------- */
+/* =====================================================
+   13. RECENT ACTIVITY
+   ===================================================== */
 
 .activity-row {
     padding: 14px 0;
@@ -357,7 +408,9 @@
 }
 
 
-/* ---------- UPCOMING ---------- */
+/* =====================================================
+   14. UPCOMING EVENTS
+   ===================================================== */
 
 .upcoming-item {
     padding: 13px 0;
@@ -390,7 +443,53 @@
 }
 
 
-/* ---------- REMOVE STREAMLIT DECORATION ---------- */
+/* =====================================================
+   15. STREAMLIT HEADER & SIDEBAR CONTROLS
+   ===================================================== */
+
+/*
+   IMPORTANT:
+   Never hide the entire header with:
+
+   header {
+       visibility: hidden;
+   }
+
+   Streamlit may place the collapsed sidebar
+   reopening control inside its application header.
+*/
+
+header[data-testid="stHeader"] {
+    visibility: visible;
+}
+
+/* Keep the sidebar reopening control accessible */
+
+[data-testid="stSidebarCollapsedControl"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Keep sidebar control buttons visible */
+
+[data-testid="stSidebarCollapsedControl"] button,
+[data-testid="stSidebarCollapseButton"] button {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Ensure collapsed control icon is readable */
+
+[data-testid="stSidebarCollapsedControl"] svg {
+    color: #153f78;
+}
+
+/* Avoid hiding the entire toolbar or app header */
+
+
+/* =====================================================
+   16. REMOVE UNNECESSARY STREAMLIT DECORATION
+   ===================================================== */
 
 #MainMenu {
     visibility: hidden;
@@ -400,6 +499,278 @@ footer {
     visibility: hidden;
 }
 
-header {
-    visibility: hidden;
+
+/* =====================================================
+   17. LOGIN PAGE BRAND
+   ===================================================== */
+
+.login-brand {
+    text-align: center;
+
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
+
+.login-moon {
+    width: 64px;
+    height: 64px;
+
+    margin: auto;
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #143d73;
+
+    color: #ffffff;
+
+    font-size: 36px;
+
+    box-shadow:
+        0 8px 20px rgba(10, 39, 75, 0.18);
+}
+
+.login-brand h1 {
+    margin: 0;
+
+    color: #071a35;
+
+    font-size: 28px;
+
+    font-weight: 750;
+}
+
+.login-brand p {
+    margin-top: 4px;
+
+    color: #71839a;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =====================================================
+   18. LOGIN FORM HEADING
+   ===================================================== */
+
+.login-heading {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.login-heading h2 {
+    color: #071a35;
+
+    font-size: 26px;
+
+    margin-bottom: 5px;
+}
+
+.login-heading p {
+    color: #71839a;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   19. LOGIN INPUTS
+   ===================================================== */
+
+div[data-baseweb="input"] {
+    border-radius: 8px;
+}
+
+
+/* =====================================================
+   20. LOGIN FORM BUTTON
+   ===================================================== */
+
+div[data-testid="stFormSubmitButton"] button {
+    background-color: #153f78;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 8px;
+
+    height: 45px;
+
+    font-weight: 600;
+
+    transition:
+        background-color 0.15s ease-in-out;
+}
+
+div[data-testid="stFormSubmitButton"] button:hover {
+    background-color: #0d315f;
+
+    color: #ffffff;
+
+    border: none;
+}
+
+div[data-testid="stFormSubmitButton"] button:focus-visible {
+    outline: 2px solid #75b5ff;
+    outline-offset: 2px;
+}
+
+
+/* =====================================================
+   21. DEMO ACCOUNT HELP
+   ===================================================== */
+
+.login-help {
+    margin-top: 25px;
+
+    padding: 16px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    background: #e9f1fb;
+
+    border: 1px solid #d5e2f2;
+}
+
+.login-help p {
+    margin: 0 0 5px 0;
+
+    color: #70839a;
+
+    font-size: 11px;
+}
+
+.login-help strong {
+    color: #153f78;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   22. RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 1024px) {
+
+    .block-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .page-header {
+        margin-left: -2rem;
+        margin-right: -2rem;
+    }
+
+    .metric-card {
+        padding: 18px;
+    }
+
+    .content-card {
+        padding: 20px;
+    }
+}
+
+
+/* =====================================================
+   23. MOBILE LAYOUT
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .block-container {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .page-header {
+        margin-top: -1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+
+        padding: 14px 16px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .page-description {
+        font-size: 13px;
+    }
+
+    .metric-card {
+        min-height: 120px;
+        padding: 16px;
+    }
+
+    .metric-value {
+        font-size: 23px;
+    }
+
+    .content-card {
+        padding: 18px;
+    }
+
+    .login-brand {
+        margin-top: 1.5rem;
+    }
+
+    .login-heading h2 {
+        font-size: 23px;
+    }
+
+    .login-moon {
+        width: 56px;
+        height: 56px;
+
+        font-size: 30px;
+    }
+}
+/* ---------- SIDEBAR BRAND & PROFILE FIX ---------- */
+
+.blue-moon-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.blue-moon-brand > div:last-child {
+    min-width: 0;
+}
+
+.resident-profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resident-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.resident-name,
+.resident-unit {
+    overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   END OF BLUE MOON APARTMENTS THEME
+   ===================================================== */

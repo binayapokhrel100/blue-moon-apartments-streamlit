@@ -3,7 +3,13 @@ import streamlit as st
 from components.sidebar import render_sidebar
 from components.style_loader import load_css
 from core.config import APP_NAME
+from core.session import (
+    initialize_session,
+    is_authenticated,
+)
+from database.db import init_db
 from views.dashboard import render_dashboard
+from views.login import render_login
 from views.placeholder import render_placeholder
 
 
@@ -30,19 +36,32 @@ PAGE_TITLES = {
 
 def main():
 
+    init_db()
+
+    initialize_session()
+
     load_css()
+
+    if not is_authenticated():
+
+        render_login()
+
+        return
 
     current_page = render_sidebar()
 
     if current_page == "dashboard":
+
         render_dashboard()
 
     elif current_page in PAGE_TITLES:
+
         render_placeholder(
             PAGE_TITLES[current_page]
         )
 
     else:
+
         render_dashboard()
 
 

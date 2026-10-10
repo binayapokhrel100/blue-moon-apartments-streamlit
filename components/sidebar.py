@@ -1,4 +1,13 @@
+
+import html
+from textwrap import dedent
+
 import streamlit as st
+
+from core.session import (
+    get_current_user,
+    logout_user,
+)
 
 
 NAVIGATION_ITEMS = {
@@ -14,52 +23,77 @@ NAVIGATION_ITEMS = {
 }
 
 
-def _set_page(page_name: str):
+def _set_page(page_name: str) -> None:
     st.session_state.current_page = page_name
 
 
+def render_html(markup: str) -> None:
+    """Render HTML without Markdown indentation problems."""
+    st.markdown(
+        dedent(markup).strip(),
+        unsafe_allow_html=True,
+    )
+
+
 def render_sidebar() -> str:
-    if "current_page" not in st.session_state:
-        st.session_state.current_page = "dashboard"
+    user = get_current_user() or {}
+
+    full_name = str(user.get("full_name") or "Resident")
+    apartment = str(user.get("apartment_unit") or "N/A")
+
+    initials = "".join(
+        part[0]
+        for part in full_name.split()
+        if part
+    )[:2].upper()
+
+    # Escape user-controlled values before inserting into HTML.
+    safe_name = html.escape(full_name)
+    safe_apartment = html.escape(apartment)
+    safe_initials = html.escape(initials)
 
     with st.sidebar:
 
-        st.markdown(
-            """
-            <div class="blue-moon-brand">
-                <div class="moon-logo">☾</div>
-                <div>
-                    <div class="brand-title">Blue Moon</div>
-                    <div class="brand-subtitle">RESIDENT PORTAL</div>
-                </div>
+        # ---------- BRAND ----------
+        render_html("""
+        <div class="blue-moon-brand">
+            <div class="moon-logo">&#9790;</div>
+            <div>
+                <div class="brand-title">Blue Moon</div>
+                <div class="brand-subtitle">RESIDENT PORTAL</div>
             </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        </div>
+        """)
 
-        st.markdown(
-            '<div class="account-badge">RESIDENT ACCOUNT</div>',
-            unsafe_allow_html=True,
-        )
+        # ---------- ACCOUNT BADGE ----------
+        render_html("""
+        <div class="account-badge">
+            RESIDENT ACCOUNT
+        </div>
+        """)
 
-        st.markdown(
-            '<div class="sidebar-section-title">NAVIGATION</div>',
-            unsafe_allow_html=True,
-        )
+        # ---------- NAVIGATION ----------
+        render_html("""
+        <div class="sidebar-section-title">
+            NAVIGATION
+        </div>
+        """)
 
         for display_name, page_name in NAVIGATION_ITEMS.items():
-
             if st.button(
                 display_name,
                 key=f"nav_{page_name}",
                 use_container_width=True,
             ):
                 _set_page(page_name)
+                st.rerun()
 
-        st.markdown(
-            '<div class="sidebar-section-title">ASSISTANT</div>',
-            unsafe_allow_html=True,
-        )
+        # ---------- ASSISTANT ----------
+        render_html("""
+        <div class="sidebar-section-title">
+            ASSISTANT
+        </div>
+        """)
 
         if st.button(
             "Blue Moon Assistant",
@@ -67,26 +101,34 @@ def render_sidebar() -> str:
             use_container_width=True,
         ):
             _set_page("assistant")
+            st.rerun()
 
         st.markdown("---")
 
-        st.markdown(
-            """
-            <div class="resident-profile">
-                <div class="resident-avatar">SM</div>
-
-                <div class="resident-details">
-                    <div class="resident-name">
-                        Sarah Mitchell
-                    </div>
-
-                    <div class="resident-unit">
-                        Apt 4B · Resident
-                    </div>
+        # ---------- RESIDENT PROFILE ----------
+        render_html(f"""
+        <div class="resident-profile">
+            <div class="resident-avatar">
+                {safe_initials}
+            </div>
+            <div class="resident-details">
+                <div class="resident-name">
+                    {safe_name}
+                </div>
+                <div class="resident-unit">
+                    Apt {safe_apartment} &middot; Resident
                 </div>
             </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        </div>
+        """)
+
+        # ---------- LOGOUT ----------
+        if st.button(
+            "Sign Out",
+            key="logout_button",
+            use_container_width=True,
+        ):
+            logout_user()
+            st.rerun()
 
     return st.session_state.current_page

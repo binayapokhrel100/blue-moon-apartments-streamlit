@@ -1,4 +1,5 @@
 
+from core.session import get_current_user
 from textwrap import dedent
 
 import streamlit as st
@@ -8,12 +9,24 @@ from components.header import render_header
 
 
 def render_dashboard():
+    user = get_current_user() or {}
+
+    first_name = user.get(
+    "first_name",
+    "Resident",
+)
+
     render_header("Dashboard")
 
     st.markdown(
-        '<h1 class="page-title">Welcome back, Sarah</h1>',
-        unsafe_allow_html=True,
-    )
+    f"""
+    <h1 class="page-title">
+        Welcome back, {first_name}
+    </h1>
+    """,
+    unsafe_allow_html=True,
+)
+    
 
     st.markdown(
         '<p class="page-description">'
@@ -26,11 +39,16 @@ def render_dashboard():
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        metric_card(
-            "Apartment",
-            "4B",
-            "Blue Moon Apartments",
-        )
+        apartment = user.get(
+        "apartment_unit",
+        "N/A",
+)
+
+    metric_card(
+        "Apartment",
+        apartment,
+        "Blue Moon Apartments",
+)
 
     with col2:
         metric_card(

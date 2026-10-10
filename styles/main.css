@@ -1,0 +1,405 @@
+/* =====================================================
+   BLUE MOON APARTMENTS
+   Main Streamlit Theme
+   ===================================================== */
+
+
+/* ---------- APP ---------- */
+
+.stApp {
+    background-color: #eef3f9;
+}
+
+
+/* ---------- MAIN CONTENT ---------- */
+
+.block-container {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    max-width: 1500px;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+[data-testid="stSidebar"] {
+    background-color: #081a30;
+    border-right: 1px solid #132a46;
+}
+
+[data-testid="stSidebar"] > div {
+    background-color: #081a30;
+}
+
+[data-testid="stSidebar"] * {
+    color: #d7e2ef;
+}
+
+
+/* ---------- BRAND ---------- */
+
+.blue-moon-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 4px 26px 4px;
+}
+
+.moon-logo {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #153f78;
+    border: 2px solid #225998;
+
+    color: white;
+
+    font-size: 27px;
+}
+
+.brand-title {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.brand-subtitle {
+    margin-top: 2px;
+
+    color: #7f95ae;
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* ---------- RESIDENT BADGE ---------- */
+
+.account-badge {
+    display: inline-block;
+
+    margin-bottom: 25px;
+
+    padding: 4px 10px;
+
+    background-color: #0a4438;
+
+    border-radius: 5px;
+
+    color: #3ee996 !important;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* ---------- SIDEBAR SECTION ---------- */
+
+.sidebar-section-title {
+    color: #536c89 !important;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+
+/* ---------- SIDEBAR BUTTONS ---------- */
+
+[data-testid="stSidebar"] .stButton > button {
+    width: 100%;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 9px;
+
+    color: #aebed0;
+
+    text-align: left;
+
+    padding: 9px 12px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: 0.15s ease-in-out;
+}
+
+[data-testid="stSidebar"] .stButton > button:hover {
+    background-color: #142a47;
+
+    color: #ffffff;
+
+    border: none;
+}
+
+[data-testid="stSidebar"] .stButton > button:focus {
+    background-color: #17345a;
+
+    color: #ffffff;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+
+/* ---------- USER PROFILE ---------- */
+
+.resident-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 15px;
+}
+
+.resident-avatar {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #1766ad;
+
+    color: white !important;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.resident-name {
+    color: #ffffff !important;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.resident-unit {
+    color: #8499b2 !important;
+
+    font-size: 10px;
+
+    margin-top: 2px;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.page-header {
+    background-color: #ffffff;
+
+    border-bottom: 1px solid #d9e3ef;
+
+    padding: 16px 20px;
+
+    margin: -1.5rem -3rem 28px -3rem;
+}
+
+.breadcrumb {
+    color: #607591;
+
+    font-size: 13px;
+}
+
+.breadcrumb strong {
+    color: #071a35;
+}
+
+
+/* ---------- PAGE TITLE ---------- */
+
+.page-title {
+    color: #071a35;
+
+    font-size: 30px;
+
+    font-weight: 750;
+
+    margin-bottom: 3px;
+}
+
+.page-description {
+    color: #71839a;
+
+    margin-bottom: 26px;
+
+    font-size: 14px;
+}
+
+
+/* ---------- METRIC CARDS ---------- */
+
+.metric-card {
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    min-height: 138px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, 0.04);
+}
+
+.metric-title {
+    color: #70839a;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 13px;
+}
+
+.metric-value {
+    color: #071a35;
+
+    font-size: 27px;
+
+    font-weight: 750;
+
+    margin-bottom: 5px;
+}
+
+.metric-subtitle {
+    color: #8494a8;
+
+    font-size: 12px;
+}
+
+
+/* ---------- CONTENT CARDS ---------- */
+
+.content-card {
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, 0.04);
+}
+
+.content-card h3 {
+    margin-top: 0;
+
+    color: #071a35;
+
+    font-size: 17px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ---------- ACTIVITY ---------- */
+
+.activity-row {
+    padding: 14px 0;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+.activity-row:last-child {
+    border-bottom: none;
+}
+
+.activity-row strong {
+    color: #102542;
+
+    font-size: 14px;
+}
+
+.activity-row p {
+    color: #60758f;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+    margin-bottom: 5px;
+}
+
+.activity-row span {
+    color: #8da0b7;
+
+    font-size: 11px;
+}
+
+
+/* ---------- UPCOMING ---------- */
+
+.upcoming-item {
+    padding: 13px 0;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+.upcoming-item:last-child {
+    border-bottom: none;
+}
+
+.upcoming-item strong {
+    color: #102542;
+
+    font-size: 13px;
+}
+
+.upcoming-item p {
+    color: #405c79;
+
+    font-size: 13px;
+
+    margin: 4px 0;
+}
+
+.upcoming-item span {
+    color: #8da0b7;
+
+    font-size: 11px;
+}
+
+
+/* ---------- REMOVE STREAMLIT DECORATION ---------- */
+
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}

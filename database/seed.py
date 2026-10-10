@@ -1,13 +1,22 @@
 import os
-from datetime import date
+from datetime import date, datetime
 from decimal import Decimal
 
 from dotenv import load_dotenv
 from sqlalchemy import select
 
 from core.security import hash_password
-from database.db import get_db_session, init_db
-from database.models import Apartment, Lease, User
+from database.db import (
+    get_db_session,
+    init_db,
+)
+from database.models import (
+    Apartment,
+    Lease,
+    Notification,
+    Payment,
+    User,
+)
 
 
 load_dotenv()
@@ -30,6 +39,10 @@ def seed_database() -> None:
 
     with get_db_session() as db:
 
+        # ============================================
+        # APARTMENT
+        # ============================================
+
         apartment = db.scalar(
             select(Apartment).where(
                 Apartment.unit_number == "4B"
@@ -50,9 +63,14 @@ def seed_database() -> None:
             db.add(apartment)
             db.flush()
 
+        # ============================================
+        # USER
+        # ============================================
+
         user = db.scalar(
             select(User).where(
-                User.email == DEMO_EMAIL.lower()
+                User.email
+                == DEMO_EMAIL.lower()
             )
         )
 
@@ -74,6 +92,10 @@ def seed_database() -> None:
             db.add(user)
             db.flush()
 
+        # ============================================
+        # LEASE
+        # ============================================
+
         lease = db.scalar(
             select(Lease).where(
                 Lease.resident_id == user.id,
@@ -86,17 +108,281 @@ def seed_database() -> None:
             lease = Lease(
                 resident_id=user.id,
                 apartment_id=apartment.id,
-                start_date=date(2026, 6, 1),
-                end_date=date(2027, 5, 31),
-                monthly_rent=Decimal("1250.00"),
-                security_deposit=Decimal("1250.00"),
+                start_date=date(
+                    2026,
+                    6,
+                    1,
+                ),
+                end_date=date(
+                    2027,
+                    5,
+                    31,
+                ),
+                monthly_rent=Decimal(
+                    "1250.00"
+                ),
+                security_deposit=Decimal(
+                    "1250.00"
+                ),
                 status="active",
             )
 
             db.add(lease)
+            db.flush()
 
-    print("Blue Moon database seeded successfully.")
-    print(f"Demo resident: {DEMO_EMAIL}")
+        # ============================================
+        # SEPTEMBER PAYMENT
+        # ============================================
+
+        confirmation = (
+            "BMP-20260901-7842"
+        )
+
+        payment = db.scalar(
+            select(Payment).where(
+                Payment.confirmation_number
+                == confirmation
+            )
+        )
+
+        if payment is None:
+
+            payment = Payment(
+                resident_id=user.id,
+                lease_id=lease.id,
+                amount=Decimal(
+                    "1250.00"
+                ),
+                payment_month=date(
+                    2026,
+                    9,
+                    1,
+                ),
+                payment_method=(
+                    "Bank Account •••• 4821"
+                ),
+                status="confirmed",
+                confirmation_number=(
+                    confirmation
+                ),
+                paid_at=datetime(
+                    2026,
+                    9,
+                    1,
+                    8,
+                    2,
+                ),
+            )
+
+            db.add(payment)
+
+        # ============================================
+        # NOTIFICATIONS
+        # ============================================
+
+        notifications = [
+            {
+                "title": (
+                    "Payment Confirmed"
+                ),
+                "message": (
+                    "Your rent payment of "
+                    "$1,250.00 for September "
+                    "was received. "
+                    "Confirmation: "
+                    "BMP-20260901-7842"
+                ),
+                "notification_type": (
+                    "payment"
+                ),
+                "is_read": False,
+                "is_alert": False,
+                "created_at": datetime(
+                    2026,
+                    9,
+                    1,
+                    8,
+                    2,
+                ),
+            },
+            {
+                "title": (
+                    "Maintenance Update — "
+                    "MR-2026-0142"
+                ),
+                "message": (
+                    "Your maintenance request "
+                    "(Leaking faucet) is now "
+                    "In Progress. Technician "
+                    "Carlos Rivera arrived "
+                    "at your unit."
+                ),
+                "notification_type": (
+                    "maintenance"
+                ),
+                "is_read": False,
+                "is_alert": False,
+                "created_at": datetime(
+                    2026,
+                    9,
+                    8,
+                    10,
+                    15,
+                ),
+            },
+            {
+                "title": (
+                    "New Announcement: "
+                    "Pool Maintenance"
+                ),
+                "message": (
+                    "The community pool will "
+                    "be closed for maintenance "
+                    "on October 5th from "
+                    "8 AM to 4 PM."
+                ),
+                "notification_type": (
+                    "announcement"
+                ),
+                "is_read": False,
+                "is_alert": False,
+                "created_at": datetime(
+                    2026,
+                    9,
+                    10,
+                    9,
+                    0,
+                ),
+            },
+            {
+                "title": (
+                    "New Login Detected"
+                ),
+                "message": (
+                    "A new login to your "
+                    "account was detected on "
+                    "Sep 10, 2026 at 8:45 AM "
+                    "from iPhone — Safari. "
+                    "If this was not you, "
+                    "please change your "
+                    "password immediately."
+                ),
+                "notification_type": (
+                    "security"
+                ),
+                "is_read": True,
+                "is_alert": True,
+                "created_at": datetime(
+                    2026,
+                    9,
+                    10,
+                    8,
+                    45,
+                ),
+            },
+            {
+                "title": (
+                    "Maintenance Scheduled — "
+                    "MR-2026-0142"
+                ),
+                "message": (
+                    "Your maintenance request "
+                    "has been scheduled for "
+                    "September 8th between "
+                    "10 AM – 12 PM."
+                ),
+                "notification_type": (
+                    "maintenance"
+                ),
+                "is_read": True,
+                "is_alert": False,
+                "created_at": datetime(
+                    2026,
+                    9,
+                    6,
+                    14,
+                    0,
+                ),
+            },
+            {
+                "title": (
+                    "Password Changed"
+                ),
+                "message": (
+                    "Your account password "
+                    "was successfully changed "
+                    "on Aug 20, 2026. "
+                    "If you did not make this "
+                    "change, contact us "
+                    "immediately."
+                ),
+                "notification_type": (
+                    "security"
+                ),
+                "is_read": True,
+                "is_alert": True,
+                "created_at": datetime(
+                    2026,
+                    8,
+                    20,
+                    15,
+                    12,
+                ),
+            },
+            {
+                "title": (
+                    "New Community News"
+                ),
+                "message": (
+                    "A bike share station "
+                    "has been added right "
+                    "outside Blue Moon "
+                    "Apartments!"
+                ),
+                "notification_type": (
+                    "community"
+                ),
+                "is_read": True,
+                "is_alert": False,
+                "created_at": datetime(
+                    2026,
+                    9,
+                    4,
+                    11,
+                    0,
+                ),
+            },
+        ]
+
+        for item in notifications:
+
+            existing = db.scalar(
+                select(Notification).where(
+                    Notification.user_id
+                    == user.id,
+                    Notification.title
+                    == item["title"],
+                    Notification.created_at
+                    == item["created_at"],
+                )
+            )
+
+            if existing is None:
+
+                db.add(
+                    Notification(
+                        user_id=user.id,
+                        **item,
+                    )
+                )
+
+    print(
+        "Blue Moon database seeded successfully."
+    )
+
+    print(
+        f"Demo resident: {DEMO_EMAIL}"
+    )
 
 
 if __name__ == "__main__":

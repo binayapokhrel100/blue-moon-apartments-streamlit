@@ -2,6 +2,10 @@ from views.notifications import (
     render_notifications,
 )
 
+from views.maintenance import (
+    render_maintenance,
+)
+
 from views.payments import (
     render_payments,
 )
@@ -29,7 +33,6 @@ st.set_page_config(
 
 
 PAGE_TITLES = {
-    "maintenance": "Maintenance",
     "announcements": "Announcements",
     "community_news": "Community News",
     "lease": "My Lease",
@@ -61,6 +64,8 @@ def main():
     elif current_page == "payments":
 
         render_payments()
+    elif current_page == "maintenance":
+        render_maintenance()
 
     elif current_page == "notifications":
 

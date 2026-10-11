@@ -848,5 +848,292 @@ div[data-testid="stFormSubmitButton"] button:hover {
 }
 
 /* =====================================================
+   MAINTENANCE
+   ===================================================== */
+
+.maintenance-card {
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    margin-bottom: 12px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 25, 55, 0.04);
+}
+
+
+.maintenance-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+
+.maintenance-request-number {
+    color: #71839a;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    margin-bottom: 3px;
+}
+
+
+.maintenance-category {
+    color: #071a35;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.maintenance-badges {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+
+    gap: 7px;
+}
+
+
+.maintenance-status,
+.urgency-badge {
+    display: inline-block;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 650;
+}
+
+
+/* STATUS COLORS */
+
+.status-submitted {
+    background: #e0f2fe;
+
+    color: #0369a1;
+}
+
+
+.status-scheduled {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+
+.status-in-progress {
+    background: #dbeafe;
+
+    color: #1d4ed8;
+}
+
+
+.status-completed {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+
+.status-cancelled {
+    background: #e5e7eb;
+
+    color: #475569;
+}
+
+
+/* URGENCY */
+
+.urgency-low {
+    background: #f1f5f9;
+
+    color: #64748b;
+}
+
+
+.urgency-medium {
+    background: #e0f2fe;
+
+    color: #0369a1;
+}
+
+
+.urgency-high {
+    background: #ffedd5;
+
+    color: #c2410c;
+}
+
+
+.urgency-emergency {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* DESCRIPTION */
+
+.maintenance-description {
+    color: #536b86;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    margin-top: 16px;
+
+    margin-bottom: 20px;
+}
+
+
+/* INFORMATION GRID */
+
+.maintenance-info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid #edf1f5;
+}
+
+
+.maintenance-info-grid div {
+    min-width: 0;
+}
+
+
+.maintenance-info-grid span {
+    display: block;
+
+    color: #8a9bb0;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 4px;
+}
+
+
+.maintenance-info-grid strong {
+    display: block;
+
+    color: #223b58;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* TIMELINE */
+
+.maintenance-timeline-item {
+    display: flex;
+
+    gap: 13px;
+
+    padding: 10px 4px;
+}
+
+
+.timeline-dot {
+    width: 10px;
+
+    height: 10px;
+
+    min-width: 10px;
+
+    margin-top: 5px;
+
+    border-radius: 50%;
+
+    background: #1766ad;
+
+    box-shadow:
+        0 0 0 4px
+        #e6f0fa;
+}
+
+
+.timeline-content strong {
+    color: #102542;
+
+    font-size: 13px;
+}
+
+
+.timeline-content p {
+    color: #60758f;
+
+    font-size: 13px;
+
+    margin:
+        3px 0 4px 0;
+}
+
+
+.timeline-content span {
+    color: #91a1b5;
+
+    font-size: 10px;
+}
+
+
+/* MOBILE */
+
+@media (
+    max-width: 900px
+) {
+
+    .maintenance-info-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .maintenance-card-top {
+        flex-direction: column;
+    }
+
+    .maintenance-badges {
+        justify-content: flex-start;
+    }
+}
+
+/* =====================================================
    END OF BLUE MOON APARTMENTS THEME
    ===================================================== */

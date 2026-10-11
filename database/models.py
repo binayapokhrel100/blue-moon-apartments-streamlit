@@ -157,6 +157,14 @@ class User(Base):
         back_populates="resident"
     )
 
+    resident_profile: Mapped[
+        "ResidentProfile | None"
+    ] = relationship(
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+
     @property
     def full_name(self) -> str:
         return (
@@ -557,4 +565,55 @@ class MaintenanceUpdate(Base):
         "MaintenanceRequest"
     ] = relationship(
         back_populates="updates"
+    )
+
+class ResidentProfile(Base):
+    __tablename__ = "resident_profiles"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True
+    )
+
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"),
+        unique=True,
+        nullable=False,
+        index=True,
+    )
+
+    emergency_contact_name: Mapped[
+        str | None
+    ] = mapped_column(
+        String(150),
+        nullable=True,
+    )
+
+    emergency_contact_phone: Mapped[
+        str | None
+    ] = mapped_column(
+        String(30),
+        nullable=True,
+    )
+
+    preferred_contact_method: Mapped[str] = (
+        mapped_column(
+            String(30),
+            nullable=False,
+            default="Email",
+        )
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+    )
+
+    user: Mapped["User"] = relationship(
+        back_populates="resident_profile"
     )

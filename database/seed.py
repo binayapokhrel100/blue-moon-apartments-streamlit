@@ -19,6 +19,18 @@ from database.models import (
     MaintenanceUpdate,
     Notification,
     Payment,
+    ResidentProfile,
+    User,
+)
+from database.models import (
+    Announcement,
+    Apartment,
+    CommunityNews,
+    Lease,
+    MaintenanceRequest,
+    MaintenanceUpdate,
+    Notification,
+    Payment,
     User,
 )
 from database.models import (
@@ -111,6 +123,42 @@ def seed_database() -> None:
             )
 
             db.add(user)
+            db.flush()
+
+        # ====================================================
+        # RESIDENT PROFILE
+        # ====================================================
+
+        resident_profile = db.scalar(
+            select(
+                ResidentProfile
+            ).where(
+                ResidentProfile.user_id
+                == user.id
+            )
+        )
+
+        if resident_profile is None:
+
+            resident_profile = (
+                ResidentProfile(
+                    user_id=user.id,
+                    emergency_contact_name=(
+                        "Daniel Mitchell"
+                    ),
+                    emergency_contact_phone=(
+                        "(214) 555-0129"
+                    ),
+                    preferred_contact_method=(
+                        "Email"
+                    ),
+                )
+            )
+
+            db.add(
+                resident_profile
+            )
+
             db.flush()
 
         # ============================================

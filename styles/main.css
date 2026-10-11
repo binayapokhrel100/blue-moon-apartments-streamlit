@@ -1135,5 +1135,732 @@ div[data-testid="stFormSubmitButton"] button:hover {
 }
 
 /* =====================================================
+   ANNOUNCEMENTS
+   ===================================================== */
+
+.announcement-card {
+    display: flex;
+
+    gap: 18px;
+
+    align-items: flex-start;
+
+    padding: 22px;
+
+    margin-bottom: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 25, 55, 0.04);
+}
+
+
+.announcement-icon {
+    width: 44px;
+
+    height: 44px;
+
+    min-width: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f1fb;
+
+    color: #1766ad;
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+
+.announcement-maintenance {
+    background: #dbeafe;
+
+    color: #2563eb;
+}
+
+
+.announcement-safety {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+.announcement-events {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+
+.announcement-community {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+
+.announcement-body {
+    flex: 1;
+}
+
+
+.announcement-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 16px;
+}
+
+
+.announcement-heading h3 {
+    color: #071a35;
+
+    margin:
+        4px 0 8px 0;
+
+    font-size: 17px;
+}
+
+
+.announcement-category {
+    color: #73869e;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+}
+
+
+.announcement-priority {
+    display: inline-block;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.priority-normal {
+    background: #f1f5f9;
+
+    color: #64748b;
+}
+
+
+.priority-important {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+
+.priority-urgent {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+.announcement-message {
+    color: #5f7590;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 10px;
+}
+
+
+.announcement-meta {
+    color: #91a1b5;
+
+    font-size: 10px;
+}
+
+/* =====================================================
+   COMMUNITY NEWS
+   ===================================================== */
+
+.community-news-card {
+    display: flex;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    margin-bottom: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 25, 55, 0.04);
+}
+
+
+.community-news-icon {
+    width: 46px;
+
+    height: 46px;
+
+    min-width: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #e7f0fb;
+
+    color: #1766ad;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+.community-news-content {
+    flex: 1;
+}
+
+
+.community-news-meta-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    color: #8799ae;
+
+    font-size: 10px;
+
+    font-weight: 650;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.community-news-content h3 {
+    color: #071a35;
+
+    font-size: 17px;
+
+    margin:
+        7px 0 7px 0;
+}
+
+
+.community-news-content p {
+    color: #5f7590;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin:
+        0 0 10px 0;
+}
+
+
+.community-news-source {
+    color: #91a1b5;
+
+    font-size: 10px;
+}
+
+
+@media (
+    max-width: 700px
+) {
+
+    .announcement-heading,
+    .community-news-meta-top {
+        flex-direction: column;
+    }
+}
+
+/* =====================================================
+   MY LEASE
+   ===================================================== */
+
+.lease-card {
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 25, 55, 0.04);
+}
+
+
+.lease-card-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+}
+
+
+.lease-label {
+    display: block;
+
+    color: #8497ad;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 5px;
+}
+
+
+.lease-card-heading h3,
+.lease-progress-card h3,
+.lease-card h3 {
+    color: #071a35;
+
+    margin:
+        0 0 4px 0;
+
+    font-size: 18px;
+}
+
+
+.lease-status-active {
+    display: inline-block;
+
+    padding:
+        5px 11px;
+
+    border-radius:
+        999px;
+
+    background:
+        #dcfce7;
+
+    color:
+        #15803d;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+
+.lease-detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 20px;
+}
+
+
+.lease-detail-grid div {
+    min-width: 0;
+}
+
+
+.lease-detail-grid span {
+    display: block;
+
+    color: #899aaf;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    margin-bottom: 4px;
+}
+
+
+.lease-detail-grid strong {
+    display: block;
+
+    color: #213a57;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* LEASE PROGRESS */
+
+.lease-progress-card {
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 25, 55, 0.04);
+
+    margin-bottom: 10px;
+}
+
+
+.lease-progress-number {
+    color: #1766ad;
+
+    font-size: 42px;
+
+    font-weight: 750;
+
+    margin:
+        18px 0 8px 0;
+}
+
+
+.lease-progress-card p {
+    color: #647991;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+.lease-days-box {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 7px;
+
+    margin-top: 17px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #edf1f5;
+}
+
+
+.lease-days-box strong {
+    color: #071a35;
+
+    font-size: 24px;
+}
+
+
+.lease-days-box span {
+    color: #8497ad;
+
+    font-size: 12px;
+}
+
+
+/* HISTORY */
+
+.lease-history-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        14px 5px;
+
+    border-bottom:
+        1px solid #edf1f5;
+}
+
+
+.lease-history-row:last-child {
+    border-bottom: none;
+}
+
+
+.lease-history-row div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.lease-history-row div:last-child {
+    text-align: right;
+}
+
+
+.lease-history-row strong {
+    color: #18314e;
+
+    font-size: 13px;
+}
+
+
+.lease-history-row span {
+    color: #899aaf;
+
+    font-size: 11px;
+}
+
+/* =====================================================
+   RESIDENT PROFILE
+   ===================================================== */
+
+.profile-summary-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 25, 55, 0.04);
+}
+
+
+.profile-large-avatar {
+    width: 68px;
+
+    height: 68px;
+
+    min-width: 68px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        #1766ad;
+
+    color:
+        #ffffff;
+
+    font-size:
+        21px;
+
+    font-weight:
+        750;
+}
+
+
+.profile-summary-info h3 {
+    color: #071a35;
+
+    font-size: 20px;
+
+    margin:
+        0 0 4px 0;
+}
+
+
+.profile-summary-info p {
+    color: #71849b;
+
+    font-size: 13px;
+
+    margin:
+        0 0 9px 0;
+}
+
+
+.profile-summary-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.profile-summary-meta span {
+    background:
+        #edf4fb;
+
+    color:
+        #315778;
+
+    padding:
+        4px 9px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        650;
+}
+
+
+.profile-form-section {
+    color: #071a35;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    padding-bottom: 8px;
+
+    margin-bottom: 4px;
+
+    border-bottom:
+        1px solid #e7edf4;
+}
+
+
+/* FORM FIELD LABELS */
+
+[data-testid="stTextInput"]
+label,
+[data-testid="stSelectbox"]
+label {
+    color: #263f5b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* SAVE PROFILE BUTTON */
+
+div[data-testid="stForm"]
+div[data-testid="stFormSubmitButton"]
+button {
+    background:
+        #153f78;
+
+    color:
+        #ffffff;
+
+    border:
+        none;
+
+    border-radius:
+        8px;
+
+    min-height:
+        44px;
+
+    font-weight:
+        650;
+}
+
+
+div[data-testid="stForm"]
+div[data-testid="stFormSubmitButton"]
+button:hover {
+    background:
+        #0f315f;
+
+    color:
+        #ffffff;
+
+    border:
+        none;
+}
+
+
+/* RESPONSIVE */
+
+@media (
+    max-width: 800px
+) {
+
+    .lease-detail-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .lease-card-heading {
+        flex-direction:
+            column;
+    }
+
+    .profile-summary-card {
+        align-items:
+            flex-start;
+    }
+}
+
+/* =====================================================
    END OF BLUE MOON APARTMENTS THEME
    ===================================================== */

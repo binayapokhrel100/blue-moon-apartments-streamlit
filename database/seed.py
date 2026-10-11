@@ -18,6 +18,16 @@ from database.models import (
     User,
 )
 
+from database.models import (
+    Apartment,
+    Lease,
+    MaintenanceRequest,
+    MaintenanceUpdate,
+    Notification,
+    Payment,
+    User,
+)
+
 
 load_dotenv()
 
@@ -129,6 +139,161 @@ def seed_database() -> None:
 
             db.add(lease)
             db.flush()
+
+
+        # ============================================
+        # MAINTENANCE REQUEST
+        # ============================================
+
+        maintenance_request = db.scalar(
+            select(
+                MaintenanceRequest
+            ).where(
+                MaintenanceRequest.request_number
+                == "MR-2026-0142"
+            )
+        )
+
+        if maintenance_request is None:
+
+            maintenance_request = (
+                MaintenanceRequest(
+                    request_number=(
+                        "MR-2026-0142"
+                    ),
+                    resident_id=user.id,
+                    apartment_id=apartment.id,
+                    category="Plumbing",
+                    location_detail=(
+                        "Kitchen sink"
+                    ),
+                    description=(
+                        "The kitchen faucet is "
+                        "leaking continuously "
+                        "under the handle."
+                    ),
+                    urgency="Medium",
+                    status="In Progress",
+                    technician_name=(
+                        "Carlos Rivera"
+                    ),
+                    scheduled_start=datetime(
+                        2026,
+                        9,
+                        8,
+                        10,
+                        0,
+                    ),
+                    scheduled_end=datetime(
+                        2026,
+                        9,
+                        8,
+                        12,
+                        0,
+                    ),
+                    created_at=datetime(
+                        2026,
+                        9,
+                        5,
+                        9,
+                        30,
+                    ),
+                    updated_at=datetime(
+                        2026,
+                        9,
+                        8,
+                        10,
+                        15,
+                    ),
+                )
+            )
+
+            db.add(
+                maintenance_request
+            )
+
+            db.flush()
+
+        # ============================================
+        # MAINTENANCE TIMELINE
+        # ============================================
+
+        maintenance_updates = [
+            {
+                "status": "Submitted",
+                "message": (
+                    "Maintenance request "
+                    "submitted by resident."
+                ),
+                "created_at": datetime(
+                    2026,
+                    9,
+                    5,
+                    9,
+                    30,
+                ),
+            },
+            {
+                "status": "Scheduled",
+                "message": (
+                    "Your maintenance request "
+                    "has been scheduled for "
+                    "September 8th between "
+                    "10 AM – 12 PM."
+                ),
+                "created_at": datetime(
+                    2026,
+                    9,
+                    6,
+                    14,
+                    0,
+                ),
+            },
+            {
+                "status": "In Progress",
+                "message": (
+                    "Technician Carlos Rivera "
+                    "arrived at your unit. "
+                    "The request is now "
+                    "In Progress."
+                ),
+                "created_at": datetime(
+                    2026,
+                    9,
+                    8,
+                    10,
+                    15,
+                ),
+            },
+        ]
+
+        for item in maintenance_updates:
+
+            existing_update = db.scalar(
+                select(
+                    MaintenanceUpdate
+                ).where(
+                    MaintenanceUpdate.request_id
+                    == maintenance_request.id,
+
+                    MaintenanceUpdate.status
+                    == item["status"],
+
+                    MaintenanceUpdate.created_at
+                    == item["created_at"],
+                )
+            )
+
+            if existing_update is None:
+
+                db.add(
+                    MaintenanceUpdate(
+                        request_id=(
+                            maintenance_request.id
+                        ),
+                        **item,
+                    )
+                )  
 
         # ============================================
         # SEPTEMBER PAYMENT

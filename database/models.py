@@ -8,6 +8,7 @@ from sqlalchemy import (
     ForeignKey,
     Numeric,
     String,
+    Text,
 )
 from sqlalchemy.orm import (
     DeclarativeBase,
@@ -63,6 +64,12 @@ class Apartment(Base):
     )
 
     leases: Mapped[list["Lease"]] = relationship(
+        back_populates="apartment"
+    )
+
+    maintenance_requests: Mapped[
+        list["MaintenanceRequest"]
+    ] = relationship(
         back_populates="apartment"
     )
 
@@ -138,13 +145,24 @@ class User(Base):
         back_populates="resident"
     )
 
-    notifications: Mapped[list["Notification"]] = relationship(
+    notifications: Mapped[
+        list["Notification"]
+    ] = relationship(
         back_populates="user"
+    )
+
+    maintenance_requests: Mapped[
+        list["MaintenanceRequest"]
+    ] = relationship(
+        back_populates="resident"
     )
 
     @property
     def full_name(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+        return (
+            f"{self.first_name} "
+            f"{self.last_name}"
+        )
 
 
 class Lease(Base):
@@ -307,4 +325,137 @@ class Notification(Base):
 
     user: Mapped["User"] = relationship(
         back_populates="notifications"
+    )
+
+
+class MaintenanceRequest(Base):
+    __tablename__ = "maintenance_requests"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True
+    )
+
+    request_number: Mapped[str] = mapped_column(
+        String(30),
+        unique=True,
+        nullable=False,
+        index=True,
+    )
+
+    resident_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"),
+        nullable=False,
+        index=True,
+    )
+
+    apartment_id: Mapped[int] = mapped_column(
+        ForeignKey("apartments.id"),
+        nullable=False,
+    )
+
+    category: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False,
+    )
+
+    location_detail: Mapped[str | None] = mapped_column(
+        String(150),
+        nullable=True,
+    )
+
+    description: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
+    )
+
+    urgency: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+        default="Medium",
+    )
+
+    status: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+        default="Submitted",
+    )
+
+    technician_name: Mapped[str | None] = mapped_column(
+        String(150),
+        nullable=True,
+    )
+
+    scheduled_start: Mapped[
+        datetime | None
+    ] = mapped_column(
+        DateTime,
+        nullable=True,
+    )
+
+    scheduled_end: Mapped[
+        datetime | None
+    ] = mapped_column(
+        DateTime,
+        nullable=True,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+    )
+
+    resident: Mapped["User"] = relationship(
+        back_populates="maintenance_requests"
+    )
+
+    apartment: Mapped["Apartment"] = relationship(
+        back_populates="maintenance_requests"
+    )
+
+    updates: Mapped[
+        list["MaintenanceUpdate"]
+    ] = relationship(
+        back_populates="request",
+        cascade="all, delete-orphan",
+    )
+
+
+class MaintenanceUpdate(Base):
+    __tablename__ = "maintenance_updates"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True
+    )
+
+    request_id: Mapped[int] = mapped_column(
+        ForeignKey("maintenance_requests.id"),
+        nullable=False,
+        index=True,
+    )
+
+    status: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+    )
+
+    message: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+    request: Mapped[
+        "MaintenanceRequest"
+    ] = relationship(
+        back_populates="updates"
     )

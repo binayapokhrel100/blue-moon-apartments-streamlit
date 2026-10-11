@@ -11,6 +11,17 @@ from database.db import (
     init_db,
 )
 from database.models import (
+    Announcement,
+    Apartment,
+    CommunityNews,
+    Lease,
+    MaintenanceRequest,
+    MaintenanceUpdate,
+    Notification,
+    Payment,
+    User,
+)
+from database.models import (
     Apartment,
     Lease,
     Notification,
@@ -340,6 +351,272 @@ def seed_database() -> None:
             )
 
             db.add(payment)
+        # ============================================
+        # ANNOUNCEMENTS
+        # ============================================
+
+        announcements = [
+            {
+                "title": (
+                    "Fire Alarm Inspection"
+                ),
+                "message": (
+                    "Annual fire alarm inspections "
+                    "will take place on October 15 "
+                    "between 9 AM and 3 PM. "
+                    "Maintenance staff may need "
+                    "brief access to each apartment."
+                ),
+                "category": "Safety",
+                "priority": "Important",
+                "published_at": datetime(
+                    2026,
+                    10,
+                    10,
+                    9,
+                    0,
+                ),
+                "expires_at": datetime(
+                    2026,
+                    10,
+                    16,
+                    23,
+                    59,
+                ),
+            },
+            {
+                "title": (
+                    "Parking Lot Resurfacing"
+                ),
+                "message": (
+                    "Sections of the resident parking "
+                    "lot will be resurfaced from "
+                    "October 18 through October 20. "
+                    "Temporary parking instructions "
+                    "will be posted in advance."
+                ),
+                "category": "Maintenance",
+                "priority": "Important",
+                "published_at": datetime(
+                    2026,
+                    10,
+                    9,
+                    14,
+                    30,
+                ),
+                "expires_at": datetime(
+                    2026,
+                    10,
+                    21,
+                    23,
+                    59,
+                ),
+            },
+            {
+                "title": (
+                    "Resident Fall Social"
+                ),
+                "message": (
+                    "Join your neighbors for the "
+                    "Blue Moon Fall Social on "
+                    "October 24 from 5 PM to 7 PM "
+                    "in the community courtyard."
+                ),
+                "category": "Events",
+                "priority": "Normal",
+                "published_at": datetime(
+                    2026,
+                    10,
+                    8,
+                    11,
+                    0,
+                ),
+                "expires_at": datetime(
+                    2026,
+                    10,
+                    25,
+                    0,
+                    0,
+                ),
+            },
+        ]
+
+        for item in announcements:
+
+            existing = db.scalar(
+                select(
+                    Announcement
+                ).where(
+                    Announcement.title
+                    == item["title"]
+                )
+            )
+
+            if existing is None:
+
+                db.add(
+                    Announcement(
+                        message=item[
+                            "message"
+                        ],
+                        title=item[
+                            "title"
+                        ],
+                        category=item[
+                            "category"
+                        ],
+                        priority=item[
+                            "priority"
+                        ],
+                        is_published=True,
+                        published_at=item[
+                            "published_at"
+                        ],
+                        expires_at=item[
+                            "expires_at"
+                        ],
+                    )
+                )
+
+        # ============================================
+        # COMMUNITY NEWS
+        # ============================================
+
+        community_news = [
+            {
+                "title": (
+                    "New Bike Share Station "
+                    "Opens Near Blue Moon"
+                ),
+                "summary": (
+                    "A new bike share station has "
+                    "been added near the apartment "
+                    "community, giving residents "
+                    "another convenient option for "
+                    "short local trips."
+                ),
+                "category": "Transportation",
+                "source_name": (
+                    "Blue Moon Community"
+                ),
+                "source_url": None,
+                "published_at": datetime(
+                    2026,
+                    10,
+                    9,
+                    8,
+                    30,
+                ),
+            },
+            {
+                "title": (
+                    "Weekend Farmers Market "
+                    "Returns Saturday"
+                ),
+                "summary": (
+                    "The nearby weekend farmers "
+                    "market returns this Saturday "
+                    "with local produce, baked goods, "
+                    "food vendors and family activities."
+                ),
+                "category": "Events",
+                "source_name": (
+                    "Community Bulletin"
+                ),
+                "source_url": None,
+                "published_at": datetime(
+                    2026,
+                    10,
+                    8,
+                    16,
+                    0,
+                ),
+            },
+            {
+                "title": (
+                    "Expanded Evening Bus Service"
+                ),
+                "summary": (
+                    "Local transit service has added "
+                    "additional evening trips on "
+                    "selected routes serving the "
+                    "surrounding neighborhood."
+                ),
+                "category": "Transportation",
+                "source_name": (
+                    "Community Transit Update"
+                ),
+                "source_url": None,
+                "published_at": datetime(
+                    2026,
+                    10,
+                    7,
+                    10,
+                    15,
+                ),
+            },
+            {
+                "title": (
+                    "Community Cleanup Day "
+                    "Scheduled for October 17"
+                ),
+                "summary": (
+                    "Residents and nearby neighbors "
+                    "are invited to participate in "
+                    "a community cleanup event on "
+                    "October 17."
+                ),
+                "category": "Community",
+                "source_name": (
+                    "Neighborhood Association"
+                ),
+                "source_url": None,
+                "published_at": datetime(
+                    2026,
+                    10,
+                    6,
+                    13,
+                    0,
+                ),
+            },
+        ]
+
+        for item in community_news:
+
+            existing = db.scalar(
+                select(
+                    CommunityNews
+                ).where(
+                    CommunityNews.title
+                    == item["title"]
+                )
+            )
+
+            if existing is None:
+
+                db.add(
+                    CommunityNews(
+                        title=item[
+                            "title"
+                        ],
+                        summary=item[
+                            "summary"
+                        ],
+                        category=item[
+                            "category"
+                        ],
+                        source_name=item[
+                            "source_name"
+                        ],
+                        source_url=item[
+                            "source_url"
+                        ],
+                        published_at=item[
+                            "published_at"
+                        ],
+                        is_active=True,
+                    )
+                )
 
         # ============================================
         # NOTIFICATIONS

@@ -425,6 +425,105 @@ class MaintenanceRequest(Base):
         cascade="all, delete-orphan",
     )
 
+class Announcement(Base):
+    __tablename__ = "announcements"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True
+    )
+
+    title: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+
+    message: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
+    )
+
+    category: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False,
+        default="General",
+    )
+
+    priority: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+        default="Normal",
+    )
+
+    is_published: Mapped[bool] = mapped_column(
+        Boolean,
+        default=True,
+    )
+
+    published_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+    expires_at: Mapped[datetime | None] = mapped_column(
+        DateTime,
+        nullable=True,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+
+class CommunityNews(Base):
+    __tablename__ = "community_news"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True
+    )
+
+    title: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+
+    summary: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
+    )
+
+    category: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False,
+        default="Community",
+    )
+
+    source_name: Mapped[str | None] = mapped_column(
+        String(150),
+        nullable=True,
+    )
+
+    source_url: Mapped[str | None] = mapped_column(
+        String(1000),
+        nullable=True,
+    )
+
+    published_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        default=True,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+
 
 class MaintenanceUpdate(Base):
     __tablename__ = "maintenance_updates"

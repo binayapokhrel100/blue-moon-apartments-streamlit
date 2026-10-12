@@ -574,6 +574,7 @@ class MaintenanceUpdate(Base):
         back_populates="updates"
     )
 
+
 class ResidentProfile(Base):
     __tablename__ = "resident_profiles"
 
@@ -588,26 +589,32 @@ class ResidentProfile(Base):
         index=True,
     )
 
-    emergency_contact_name: Mapped[
-        str | None
-    ] = mapped_column(
-        String(150),
+    # Additional resident contact details
+    secondary_email: Mapped[str | None] = mapped_column(
+        String(255),
         nullable=True,
     )
 
-    emergency_contact_phone: Mapped[
-        str | None
-    ] = mapped_column(
+    secondary_phone: Mapped[str | None] = mapped_column(
         String(30),
         nullable=True,
     )
 
-    preferred_contact_method: Mapped[str] = (
-        mapped_column(
-            String(30),
-            nullable=False,
-            default="Email",
-        )
+    # Emergency contact information
+    emergency_contact_name: Mapped[str | None] = mapped_column(
+        String(150),
+        nullable=True,
+    )
+
+    emergency_contact_phone: Mapped[str | None] = mapped_column(
+        String(30),
+        nullable=True,
+    )
+
+    preferred_contact_method: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+        default="Email",
     )
 
     created_at: Mapped[datetime] = mapped_column(
@@ -624,7 +631,6 @@ class ResidentProfile(Base):
     user: Mapped["User"] = relationship(
         back_populates="resident_profile"
     )
-
 class LoginEvent(Base):
     __tablename__ = "login_events"
 
@@ -683,3 +689,4 @@ class LoginEvent(Base):
     user: Mapped["User"] = relationship(
         back_populates="login_events"
     )
+

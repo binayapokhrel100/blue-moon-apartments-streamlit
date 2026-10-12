@@ -24,6 +24,10 @@ from views.profile import (
     render_profile,
 )
 
+from views.security import (
+    render_security,
+)
+
 import streamlit as st
 
 from components.sidebar import render_sidebar
@@ -48,7 +52,6 @@ st.set_page_config(
 
 
 PAGE_TITLES = {
-    "security": "Security",
     "assistant": "Blue Moon Assistant",
 }
 
@@ -85,6 +88,8 @@ def main():
         render_lease()
     elif current_page == "profile":
         render_profile()
+    elif current_page == "security":
+        render_security()
 
     elif current_page in PAGE_TITLES:
 

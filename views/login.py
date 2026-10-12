@@ -1,39 +1,203 @@
+
+"""Blue Moon Apartments resident login page."""
+
+import logging
+from textwrap import dedent
+
 import streamlit as st
 
+from core.client_info import get_client_info
 from core.session import login_user
 from services.auth_service import authenticate_user
+from services.security_service import record_successful_login
 
 
-def render_login() -> None:
+logger = logging.getLogger(__name__)
 
-    st.markdown(
-        """
-        <div class="login-brand">
-            <div class="login-moon">☾</div>
-            <h1>Blue Moon</h1>
-            <p>RESIDENT PORTAL</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
+
+# ==================================================
+# LOGIN BRAND
+# ==================================================
+
+def _render_login_brand() -> None:
+    """Display the Blue Moon logo and branding."""
+
+    st.html(
+        dedent(
+            """
+            <div class="login-brand">
+
+                <div class="login-moon">
+                    ☾
+                </div>
+
+                <h1>
+                    Blue Moon
+                </h1>
+
+                <p>
+                    RESIDENT PORTAL
+                </p>
+
+            </div>
+            """
+        ).strip()
     )
 
+
+# ==================================================
+# WELCOME HEADING
+# ==================================================
+
+def _render_login_heading() -> None:
+    """Display the login page welcome message."""
+
+    st.html(
+        dedent(
+            """
+            <div class="login-heading">
+
+                <h2>
+                    Welcome Back
+                </h2>
+
+                <p>
+                    Sign in to access your
+                    resident account.
+                </p>
+
+            </div>
+            """
+        ).strip()
+    )
+
+
+# ==================================================
+# DEMO RESIDENT CARD
+# ==================================================
+
+def _render_demo_account() -> None:
+    """Display the demo resident information."""
+
+    st.html(
+        dedent(
+            """
+            <div class="login-help">
+
+                <p>
+                    Demo resident account
+                </p>
+
+                <strong>
+                    Sarah Mitchell · Apartment 4B
+                </strong>
+
+            </div>
+            """
+        ).strip()
+    )
+
+
+# ==================================================
+# AUTHENTICATE RESIDENT
+# ==================================================
+
+def _process_login(
+    email: str,
+    password: str,
+) -> None:
+    """Validate credentials and create a user session."""
+
+    cleaned_email = email.strip().lower()
+
+    # ----------------------------------------------
+    # INPUT VALIDATION
+    # ----------------------------------------------
+
+    if not cleaned_email:
+        st.error(
+            "Please enter your email address."
+        )
+        return
+
+    if not password:
+        st.error(
+            "Please enter your password."
+        )
+        return
+
+    # ----------------------------------------------
+    # AUTHENTICATE USER
+    # ----------------------------------------------
+
+    user = authenticate_user(
+        cleaned_email,
+        password,
+    )
+
+    if user is None:
+        st.error(
+            "Invalid email or password."
+        )
+        return
+
+    # ----------------------------------------------
+    # RECORD SUCCESSFUL LOGIN
+    # ----------------------------------------------
+
+    try:
+        record_successful_login(
+            user_id=user.id,
+            client_info=get_client_info(),
+        )
+
+    except Exception:
+        # A logging failure should not block
+        # an otherwise successful login.
+        logger.exception(
+            "Unable to record login security event."
+        )
+
+    # ----------------------------------------------
+    # CREATE AUTHENTICATED SESSION
+    # ----------------------------------------------
+
+    login_user(user)
+
+    # Refresh the app to display the
+    # authenticated resident portal.
+    st.rerun()
+
+
+# ==================================================
+# MAIN LOGIN PAGE
+# ==================================================
+
+def render_login() -> None:
+    """Render the resident login page."""
+
+    # ----------------------------------------------
+    # CENTERED PAGE LAYOUT
+    # ----------------------------------------------
+
     left, center, right = st.columns(
-        [1.1, 1, 1.1]
+        [1, 1.4, 1],
+        gap="medium",
     )
 
     with center:
 
-        st.markdown(
-            """
-            <div class="login-heading">
-                <h2>Welcome Back</h2>
-                <p>
-                    Sign in to access your resident account.
-                </p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        # ------------------------------------------
+        # LOGO AND WELCOME HEADING
+        # ------------------------------------------
+
+        _render_login_brand()
+
+        _render_login_heading()
+
+        # ------------------------------------------
+        # LOGIN FORM
+        # ------------------------------------------
 
         with st.form(
             "resident_login_form",
@@ -45,65 +209,34 @@ def render_login() -> None:
                 placeholder=(
                     "sarah.mitchell@bluemoon.demo"
                 ),
+                autocomplete="email",
             )
 
             password = st.text_input(
                 "Password",
                 type="password",
                 placeholder="Enter your password",
+                autocomplete="current-password",
             )
 
             submitted = st.form_submit_button(
                 "Sign In",
                 use_container_width=True,
+                type="primary",
             )
+
+        # ------------------------------------------
+        # HANDLE FORM SUBMISSION
+        # ------------------------------------------
 
         if submitted:
-
-            if not email.strip():
-                st.error(
-                    "Please enter your email address."
-                )
-                return
-
-            if not password:
-                st.error(
-                    "Please enter your password."
-                )
-                return
-
-            user = authenticate_user(
-                email,
-                password,
+            _process_login(
+                email=email,
+                password=password,
             )
 
-            if user is None:
+        # ------------------------------------------
+        # DEMO ACCOUNT INFORMATION
+        # ------------------------------------------
 
-                st.error(
-                    "Invalid email or password."
-                )
-
-                return
-
-            login_user(user)
-
-            st.success(
-                "Login successful."
-            )
-
-            st.rerun()
-
-        st.markdown(
-            """
-            <div class="login-help">
-                <p>
-                    Demo resident account
-                </p>
-
-                <strong>
-                    Sarah Mitchell · Apartment 4B
-                </strong>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        _render_demo_account()

@@ -145,6 +145,13 @@ class User(Base):
         back_populates="resident"
     )
 
+    login_events: Mapped[
+        list["LoginEvent"]
+    ] = relationship(
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+
     notifications: Mapped[
         list["Notification"]
     ] = relationship(
@@ -616,4 +623,63 @@ class ResidentProfile(Base):
 
     user: Mapped["User"] = relationship(
         back_populates="resident_profile"
+    )
+
+class LoginEvent(Base):
+    __tablename__ = "login_events"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True
+    )
+
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"),
+        nullable=False,
+        index=True,
+    )
+
+    event_type: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False,
+        default="login_success",
+    )
+
+    success: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=True,
+    )
+
+    device_name: Mapped[str | None] = mapped_column(
+        String(100),
+        nullable=True,
+    )
+
+    browser_name: Mapped[str | None] = mapped_column(
+        String(100),
+        nullable=True,
+    )
+
+    ip_address: Mapped[str | None] = mapped_column(
+        String(100),
+        nullable=True,
+    )
+
+    location_label: Mapped[str | None] = mapped_column(
+        String(150),
+        nullable=True,
+    )
+
+    user_agent: Mapped[str | None] = mapped_column(
+        String(1000),
+        nullable=True,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+    user: Mapped["User"] = relationship(
+        back_populates="login_events"
     )

@@ -1,6 +1,13 @@
 from views.notifications import (
     render_notifications,
 )
+from views.announcements import (
+    render_announcements,
+)
+
+from views.community_news import (
+    render_community_news,
+)
 
 from views.maintenance import (
     render_maintenance,
@@ -9,6 +16,14 @@ from views.maintenance import (
 from views.payments import (
     render_payments,
 )
+from views.lease import (
+    render_lease,
+)
+
+from views.profile import (
+    render_profile,
+)
+
 import streamlit as st
 
 from components.sidebar import render_sidebar
@@ -33,10 +48,6 @@ st.set_page_config(
 
 
 PAGE_TITLES = {
-    "announcements": "Announcements",
-    "community_news": "Community News",
-    "lease": "My Lease",
-    "profile": "Profile",
     "security": "Security",
     "assistant": "Blue Moon Assistant",
 }
@@ -59,17 +70,21 @@ def main():
     current_page = render_sidebar()
 
     if current_page == "dashboard":
-
         render_dashboard()
     elif current_page == "payments":
-
         render_payments()
     elif current_page == "maintenance":
         render_maintenance()
-
     elif current_page == "notifications":
-
         render_notifications()
+    elif current_page == "announcements":
+        render_announcements()
+    elif current_page == "community_news":
+        render_community_news()
+    elif current_page == "lease":
+        render_lease()
+    elif current_page == "profile":
+        render_profile()
 
     elif current_page in PAGE_TITLES:
 

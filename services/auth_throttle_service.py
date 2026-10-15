@@ -4,6 +4,7 @@
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.orm import Session
 from hashlib import sha256
+from sqlalchemy import delete, func, select, text
 
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
@@ -14,7 +15,9 @@ from database.models import AuthenticationFailureAttempt
 # ==========================================================
 # RATE LIMIT POLICY
 # ==========================================================
-
+# Shared transaction-lock identifier for PostgreSQL.
+# Must remain the same across every application instance.
+AUTHENTICATION_PG_LOCK_KEY = 0x424C55454D4F4F4E
 MAX_FAILURES = 5
 WINDOW_MINUTES = 15
 
@@ -178,24 +181,35 @@ def clear_failed_attempts(
 # SPRINT 11B.5C — ATOMIC SQLITE AUTHENTICATION
 # ==========================================================
 
+
 def acquire_authentication_lock(
     db: Session,
 ) -> None:
+    """Acquire an atomic authentication transaction lock.
+
+    SQLite:
+        Acquire BEGIN IMMEDIATE before reading any
+        authentication or recovery records.
+
+    PostgreSQL:
+        Acquire one transaction-scoped advisory lock
+        shared by all application instances.
+
+    Requirements:
+        - Call only from a fresh database session.
+        - Acquire before any authentication DB reads.
+        - Keep the lock through the entire operation.
+        - Release by committing or rolling back.
+        - Reject unsupported database engines.
+
+    A single global PostgreSQL lock intentionally
+    preserves the current SQLite-style serialization
+    of authentication and recovery operations.
     """
-    Start an immediate SQLite write transaction.
 
-    This must be the first database operation
-    performed in a fresh session.
-
-    SQLite allows one writer at a time. Acquiring
-    the write reservation before checking the
-    failure counter ensures concurrent requests
-    cannot bypass the same rate limit.
-
-    This implementation is deliberately SQLite-only.
-    A PostgreSQL deployment requires a separate
-    transactional locking implementation.
-    """
+    # --------------------------------------------------
+    # REQUIRE A FRESH TRANSACTION
+    # --------------------------------------------------
 
     if db.in_transaction():
         raise RuntimeError(
@@ -204,20 +218,55 @@ def acquire_authentication_lock(
         )
 
     bind = db.get_bind()
+    dialect_name = bind.dialect.name
 
-    if bind.dialect.name != "sqlite":
-        raise RuntimeError(
-            "Atomic authentication locking is "
-            "not configured for this database."
+    # --------------------------------------------------
+    # SQLITE — LOCAL DEVELOPMENT
+    # --------------------------------------------------
+
+    if dialect_name == "sqlite":
+
+        db.connection().exec_driver_sql(
+            "BEGIN IMMEDIATE"
         )
 
-    # Starts BEGIN IMMEDIATE as the first SQL command.
-    # The connection waits for an existing SQLite writer
-    # up to its configured busy timeout.
+        return
 
-    db.connection().exec_driver_sql(
-        "BEGIN IMMEDIATE"
+    # --------------------------------------------------
+    # POSTGRESQL — CLOUD DEPLOYMENT
+    # --------------------------------------------------
+
+    if dialect_name == "postgresql":
+
+        # This statement begins the transaction
+        # and blocks until the advisory lock is held.
+        #
+        # The lock is released automatically when
+        # the transaction commits or rolls back.
+        #
+        # Do not use pg_advisory_lock(), which is
+        # session-scoped instead of transaction-scoped.
+
+        db.execute(
+            text(
+                "SELECT pg_advisory_xact_lock(:lock_key)"
+            ),
+            {
+                "lock_key": AUTHENTICATION_PG_LOCK_KEY,
+            },
+        )
+
+        return
+
+    # --------------------------------------------------
+    # UNSUPPORTED DATABASE — FAIL CLOSED
+    # --------------------------------------------------
+
+    raise RuntimeError(
+        "Atomic authentication locking is "
+        "not configured for this database."
     )
+
 
 
 # ==========================================================

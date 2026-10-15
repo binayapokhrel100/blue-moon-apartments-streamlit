@@ -68,7 +68,8 @@ from views.security import render_security
 
 st.set_page_config(
     page_title=APP_NAME,
-    page_icon="🌙",
+    page_icon="\U0001F319",
+#page_icon="🌙",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -291,6 +292,12 @@ def _render_admin_portal() -> None:
     render_page()
 
 
+
+@st.cache_resource(show_spinner=False)
+def initialize_application_database():
+    """Initialize or verify the database once per app process."""
+    init_db()
+    return True
 # ==================================================
 # MAIN APPLICATION
 # ==================================================
@@ -301,7 +308,7 @@ def main() -> None:
     # INITIALIZE DATABASE AND SESSION
     # ----------------------------------------------
 
-    init_db()
+    initialize_application_database()
 
     initialize_session()
 

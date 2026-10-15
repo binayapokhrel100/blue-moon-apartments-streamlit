@@ -978,22 +978,30 @@ class MoveOutInspection(Base):
         DateTime,
         nullable=True,
     )
+# ==========================================================
+# DATABASE-PORTABLE MOVE-OUT INSPECTION CONSTRAINT
+# ==========================================================
 
+# Allow only one unfinished inspection per apartment.
+# Completed and cancelled inspections remain historical
+# records and must not prevent future inspections.
+#
+# Enforce the same partial unique index on both
+# SQLite (development) and PostgreSQL (cloud).
 
-# Database-level protection for SQLite:
-# Only one unfinished inspection per apartment.
-# Completed inspections remain as historical records.
+_open_inspection_condition = (
+    MoveOutInspection.status.in_(
+        ["pending", "inspected"]
+    )
+)
 
 Index(
     "uq_open_moveout_inspection_per_apartment",
     MoveOutInspection.apartment_id,
     unique=True,
-    sqlite_where=MoveOutInspection.status.in_(
-        ["pending", "inspected"]
-    ),
+    sqlite_where=_open_inspection_condition,
+    postgresql_where=_open_inspection_condition,
 )
-
-
 # ==========================================================
 # SECURITY DEPOSIT SETTLEMENT
 # ==========================================================

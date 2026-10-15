@@ -1,29 +1,51 @@
 
-/* =====================================================
-   BLUE MOON APARTMENTS
-   Main Streamlit Theme
-   ===================================================== */
+/* ============================================================
+   BLUE MOON APARTMENTS — MAIN THEME
+   Shared layout and styling for resident pages.
+   Dashboard-specific styles remain in dashboard.css.
+   ============================================================ */
 
 
-/* ---------- APP ---------- */
+/* ============================================================
+   GLOBAL THEME AND FULL-WIDTH PAGE LAYOUT
+   ============================================================ */
 
 .stApp {
     background-color: #eef3f9;
 }
 
-
-/* ---------- MAIN CONTENT ---------- */
-
 .block-container {
+    width: 100%;
+    max-width: none;
+
     padding-top: 1.5rem;
     padding-bottom: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    max-width: 1500px;
+
+    padding-left: clamp(16px, 2vw, 38px);
+    padding-right: clamp(16px, 2vw, 38px);
+}
+
+/* Expand pages other than Dashboard.
+   Dashboard retains its own width rules. */
+
+@media (min-width: 1025px) {
+
+    [data-testid="stMainBlockContainer"]:not(:has(.st-key-bm8_page)),
+    [data-testid="stAppViewBlockContainer"]:not(:has(.st-key-bm8_page)),
+    section[data-testid="stMain"] .block-container:not(:has(.st-key-bm8_page)),
+    .block-container:not(:has(.st-key-bm8_page)) {
+        width: 100% !important;
+        max-width: none !important;
+
+        padding-left: clamp(16px, 2vw, 38px) !important;
+        padding-right: clamp(16px, 2vw, 38px) !important;
+    }
 }
 
 
-/* ---------- SIDEBAR ---------- */
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
 
 [data-testid="stSidebar"] {
     background-color: #081a30;
@@ -38,14 +60,16 @@
     color: #d7e2ef;
 }
 
-
-/* ---------- BRAND ---------- */
-
 .blue-moon-brand {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 10px 4px 26px 4px;
+    width: 100%;
+}
+
+.blue-moon-brand > div:last-child {
+    min-width: 0;
 }
 
 .moon-logo {
@@ -57,12 +81,10 @@
     justify-content: center;
 
     border-radius: 50%;
-
     background: #153f78;
     border: 2px solid #225998;
 
     color: white;
-
     font-size: 27px;
 }
 
@@ -74,584 +96,109 @@
 
 .brand-subtitle {
     margin-top: 2px;
-
     color: #7f95ae;
     font-size: 10px;
     font-weight: 600;
-
-    letter-spacing: 0.7px;
+    letter-spacing: .7px;
 }
-
-
-/* ---------- RESIDENT BADGE ---------- */
 
 .account-badge {
     display: inline-block;
-
     margin-bottom: 25px;
-
     padding: 4px 10px;
 
     background-color: #0a4438;
-
     border-radius: 5px;
 
     color: #3ee996 !important;
-
     font-size: 10px;
     font-weight: 700;
-
-    letter-spacing: 0.7px;
+    letter-spacing: .7px;
 }
-
-
-/* ---------- SIDEBAR SECTION ---------- */
 
 .sidebar-section-title {
     color: #536c89 !important;
-
     font-size: 11px;
     font-weight: 700;
-
     letter-spacing: 1px;
-
     margin-top: 12px;
     margin-bottom: 8px;
 }
 
-
-/* ---------- SIDEBAR BUTTONS ---------- */
-
 [data-testid="stSidebar"] .stButton > button {
     width: 100%;
-
     background: transparent;
-
     border: none;
     border-radius: 9px;
 
     color: #aebed0;
-
     text-align: left;
-
     padding: 9px 12px;
-
     font-size: 14px;
     font-weight: 500;
 
-    transition: 0.15s ease-in-out;
+    transition: .15s ease-in-out;
 }
 
 [data-testid="stSidebar"] .stButton > button:hover {
     background-color: #142a47;
-
     color: #ffffff;
-
     border: none;
 }
 
 [data-testid="stSidebar"] .stButton > button:focus {
     background-color: #17345a;
-
     color: #ffffff;
-
     border: none;
-
     box-shadow: none;
 }
 
 
-/* ---------- USER PROFILE ---------- */
+/* ============================================================
+   RESIDENT SIDEBAR PROFILE
+   ============================================================ */
 
 .resident-profile {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     padding-top: 15px;
+    width: 100%;
 }
 
 .resident-avatar {
     width: 36px;
     height: 36px;
-
     min-width: 36px;
 
     border-radius: 50%;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     background: #1766ad;
-
     color: white !important;
 
     font-size: 12px;
-
     font-weight: 700;
-}
-
-.resident-name {
-    color: #ffffff !important;
-
-    font-size: 12px;
-
-    font-weight: 600;
-}
-
-.resident-unit {
-    color: #8499b2 !important;
-
-    font-size: 10px;
-
-    margin-top: 2px;
-}
-
-
-/* ---------- HEADER ---------- */
-
-.page-header {
-    background-color: #ffffff;
-
-    border-bottom: 1px solid #d9e3ef;
-
-    padding: 16px 20px;
-
-    margin: -1.5rem -3rem 28px -3rem;
-}
-
-.breadcrumb {
-    color: #607591;
-
-    font-size: 13px;
-}
-
-.breadcrumb strong {
-    color: #071a35;
-}
-
-
-/* ---------- PAGE TITLE ---------- */
-
-.page-title {
-    color: #071a35;
-
-    font-size: 30px;
-
-    font-weight: 750;
-
-    margin-bottom: 3px;
-}
-
-.page-description {
-    color: #71839a;
-
-    margin-bottom: 26px;
-
-    font-size: 14px;
-}
-
-
-/* ---------- METRIC CARDS ---------- */
-
-.metric-card {
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 14px;
-
-    padding: 22px;
-
-    min-height: 138px;
-
-    box-shadow: 0 2px 5px rgba(0, 25, 55, 0.04);
-}
-
-.metric-title {
-    color: #70839a;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    margin-bottom: 13px;
-}
-
-.metric-value {
-    color: #071a35;
-
-    font-size: 27px;
-
-    font-weight: 750;
-
-    margin-bottom: 5px;
-}
-
-.metric-subtitle {
-    color: #8494a8;
-
-    font-size: 12px;
-}
-
-
-/* ---------- CONTENT CARDS ---------- */
-
-.content-card {
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 14px;
-
-    padding: 24px;
-
-    box-shadow: 0 2px 5px rgba(0, 25, 55, 0.04);
-}
-
-.content-card h3 {
-    margin-top: 0;
-
-    color: #071a35;
-
-    font-size: 17px;
-
-    margin-bottom: 20px;
-}
-
-
-/* ---------- ACTIVITY ---------- */
-
-.activity-row {
-    padding: 14px 0;
-
-    border-bottom: 1px solid #edf1f5;
-}
-
-.activity-row:last-child {
-    border-bottom: none;
-}
-
-.activity-row strong {
-    color: #102542;
-
-    font-size: 14px;
-}
-
-.activity-row p {
-    color: #60758f;
-
-    font-size: 13px;
-
-    margin-top: 4px;
-    margin-bottom: 5px;
-}
-
-.activity-row span {
-    color: #8da0b7;
-
-    font-size: 11px;
-}
-
-
-/* ---------- UPCOMING ---------- */
-
-.upcoming-item {
-    padding: 13px 0;
-
-    border-bottom: 1px solid #edf1f5;
-}
-
-.upcoming-item:last-child {
-    border-bottom: none;
-}
-
-.upcoming-item strong {
-    color: #102542;
-
-    font-size: 13px;
-}
-
-.upcoming-item p {
-    color: #405c79;
-
-    font-size: 13px;
-
-    margin: 4px 0;
-}
-
-.upcoming-item span {
-    color: #8da0b7;
-
-    font-size: 11px;
-}
-
-
-/* ---------- STREAMLIT UI CLEANUP ---------- */
-
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-/* Keep Streamlit's header visible so users
-   can reopen the collapsed sidebar. */
-
-header[data-testid="stHeader"] {
-    visibility: visible;
-}
-
-
-/* =====================================================
-   LOGIN PAGE
-   ===================================================== */
-
-.login-brand {
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-}
-
-.login-moon {
-    width: 64px;
-    height: 64px;
-
-    margin: auto;
-    margin-bottom: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #143d73;
-
-    color: #ffffff;
-
-    font-size: 36px;
-
-    box-shadow:
-        0 8px 20px rgba(10, 39, 75, 0.18);
-}
-
-.login-brand h1 {
-    margin: 0;
-
-    color: #071a35;
-
-    font-size: 28px;
-
-    font-weight: 750;
-}
-
-.login-brand p {
-    margin-top: 4px;
-
-    color: #71839a;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-}
-
-
-.login-heading {
-    text-align: center;
-
-    margin-bottom: 25px;
-}
-
-.login-heading h2 {
-    color: #071a35;
-
-    font-size: 26px;
-
-    margin-bottom: 5px;
-}
-
-.login-heading p {
-    color: #71839a;
-
-    font-size: 13px;
-}
-
-
-/* ---------- INPUTS ---------- */
-
-div[data-baseweb="input"] {
-    border-radius: 8px;
-}
-
-
-/* ---------- FORM BUTTON ---------- */
-
-div[data-testid="stFormSubmitButton"] button {
-    background-color: #153f78;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 8px;
-
-    height: 45px;
-
-    font-weight: 600;
-}
-
-div[data-testid="stFormSubmitButton"] button:hover {
-    background-color: #0d315f;
-
-    color: white;
-
-    border: none;
-}
-
-
-/* ---------- DEMO ACCOUNT HELP ---------- */
-
-.login-help {
-    margin-top: 25px;
-
-    padding: 16px;
-
-    text-align: center;
-
-    border-radius: 10px;
-
-    background: #e9f1fb;
-
-    border: 1px solid #d5e2f2;
-}
-
-.login-help p {
-    margin: 0 0 5px 0;
-
-    color: #70839a;
-
-    font-size: 11px;
-}
-
-.login-help strong {
-    color: #153f78;
-
-    font-size: 12px;
-}
-
-
-/* =====================================================
-   RESPONSIVE DESIGN
-   ===================================================== */
-
-@media (max-width: 1024px) {
-
-    .block-container {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
-    .page-header {
-        margin-left: -2rem;
-        margin-right: -2rem;
-    }
-
-    .metric-card {
-        padding: 18px;
-    }
-
-    .content-card {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .block-container {
-        padding-top: 1rem;
-        padding-bottom: 2rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    .page-header {
-        margin-top: -1rem;
-        margin-left: -1rem;
-        margin-right: -1rem;
-
-        padding: 14px 16px;
-    }
-
-    .page-title {
-        font-size: 24px;
-    }
-
-    .page-description {
-        font-size: 13px;
-    }
-
-    .metric-card {
-        min-height: 120px;
-        padding: 16px;
-    }
-
-    .metric-value {
-        font-size: 23px;
-    }
-
-    .content-card {
-        padding: 18px;
-    }
-
-    .login-brand {
-        margin-top: 1.5rem;
-    }
-
-    .login-heading h2 {
-        font-size: 23px;
-    }
-
-    .login-moon {
-        width: 56px;
-        height: 56px;
-
-        font-size: 30px;
-    }
-}
-
-
-/* ---------- SIDEBAR BRAND & PROFILE ---------- */
-
-.blue-moon-brand {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.blue-moon-brand > div:last-child {
-    min-width: 0;
-}
-
-.resident-profile {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
 .resident-details {
     flex: 1;
     min-width: 0;
+}
+
+.resident-name {
+    color: #ffffff !important;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.resident-unit {
+    color: #8499b2 !important;
+    font-size: 10px;
+    margin-top: 2px;
 }
 
 .resident-name,
@@ -660,9 +207,41 @@ div[data-testid="stFormSubmitButton"] button:hover {
 }
 
 
-/* =====================================================
-   PAYMENTS
-   ===================================================== */
+/* ============================================================
+   PAGE HEADER AND BREADCRUMBS
+   ============================================================ */
+
+.page-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #d9e3ef;
+
+    padding: 16px 20px;
+
+    /* Prevent the breadcrumb from being clipped. */
+    margin: 0 calc(0px - clamp(16px, 2vw, 38px)) 20px;
+}
+
+.breadcrumb {
+    color: #607591;
+    font-size: 13px;
+}
+
+.breadcrumb strong {
+    color: #071a35;
+}
+
+.page-title {
+    color: #071a35;
+    font-size: 30px;
+    font-weight: 750;
+    margin-bottom: 3px;
+}
+
+.page-description {
+    color: #71839a;
+    margin-bottom: 26px;
+    font-size: 14px;
+}
 
 .section-heading {
     margin-bottom: 16px;
@@ -680,14 +259,246 @@ div[data-testid="stFormSubmitButton"] button:hover {
     margin-top: 0;
 }
 
+
+/* ============================================================
+   REUSABLE METRIC CARDS
+   ============================================================ */
+
+.metric-card {
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 14px;
+
+    padding: 22px;
+    min-height: 138px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.metric-title {
+    color: #70839a;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 13px;
+}
+
+.metric-value {
+    color: #071a35;
+    font-size: 27px;
+    font-weight: 750;
+    margin-bottom: 5px;
+}
+
+.metric-subtitle {
+    color: #8494a8;
+    font-size: 12px;
+}
+
+
+/* ============================================================
+   REUSABLE CONTENT CARDS
+   ============================================================ */
+
+.content-card {
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 14px;
+
+    padding: 24px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.content-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    color: #071a35;
+    font-size: 17px;
+}
+
+.activity-row {
+    padding: 14px 0;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.activity-row:last-child {
+    border-bottom: none;
+}
+
+.activity-row strong {
+    color: #102542;
+    font-size: 14px;
+}
+
+.activity-row p {
+    color: #60758f;
+    font-size: 13px;
+    margin: 4px 0 5px;
+}
+
+.activity-row span {
+    color: #8da0b7;
+    font-size: 11px;
+}
+
+.upcoming-item {
+    padding: 13px 0;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.upcoming-item:last-child {
+    border-bottom: none;
+}
+
+.upcoming-item strong {
+    color: #102542;
+    font-size: 13px;
+}
+
+.upcoming-item p {
+    color: #405c79;
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.upcoming-item span {
+    color: #8da0b7;
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   STREAMLIT UI
+   ============================================================ */
+
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+/* Keep the sidebar toggle available. */
+
+header[data-testid="stHeader"] {
+    visibility: visible;
+}
+
+div[data-baseweb="input"] {
+    border-radius: 8px;
+}
+
+div[data-testid="stFormSubmitButton"] button {
+    background-color: #153f78;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 45px;
+    font-weight: 600;
+}
+
+div[data-testid="stFormSubmitButton"] button:hover {
+    background-color: #0d315f;
+    color: white;
+    border: none;
+}
+
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+
+.login-brand {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.login-moon {
+    width: 64px;
+    height: 64px;
+    margin: auto auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #143d73;
+    color: #ffffff;
+    font-size: 36px;
+
+    box-shadow: 0 8px 20px rgba(10, 39, 75, .18);
+}
+
+.login-brand h1 {
+    margin: 0;
+    color: #071a35;
+    font-size: 28px;
+    font-weight: 750;
+}
+
+.login-brand p {
+    margin-top: 4px;
+    color: #71839a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.login-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-heading h2 {
+    color: #071a35;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.login-heading p {
+    color: #71839a;
+    font-size: 13px;
+}
+
+.login-help {
+    margin-top: 25px;
+    padding: 16px;
+
+    text-align: center;
+
+    border-radius: 10px;
+    background: #e9f1fb;
+    border: 1px solid #d5e2f2;
+}
+
+.login-help p {
+    margin: 0 0 5px;
+    color: #70839a;
+    font-size: 11px;
+}
+
+.login-help strong {
+    color: #153f78;
+    font-size: 12px;
+}
+
+
+/* ============================================================
+   PAYMENTS
+   ============================================================ */
+
 .payment-summary-card {
     background: #ffffff;
     border: 1px solid #dce5ef;
     border-radius: 14px;
+
     padding: 24px;
 
-    box-shadow:
-        0 2px 5px rgba(0, 25, 55, 0.04);
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
 }
 
 .payment-summary-card h3 {
@@ -701,6 +512,7 @@ div[data-testid="stFormSubmitButton"] button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 12px 0;
     border-bottom: 1px solid #edf1f5;
 }
@@ -733,9 +545,9 @@ div[data-testid="stFormSubmitButton"] button:hover {
 }
 
 
-/* =====================================================
+/* ============================================================
    NOTIFICATIONS
-   ===================================================== */
+   ============================================================ */
 
 .notification-card {
     display: flex;
@@ -749,8 +561,7 @@ div[data-testid="stFormSubmitButton"] button:hover {
     padding: 20px;
     margin-bottom: 10px;
 
-    box-shadow:
-        0 2px 5px rgba(0, 25, 55, 0.04);
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
 }
 
 .notification-alert {
@@ -763,6 +574,7 @@ div[data-testid="stFormSubmitButton"] button:hover {
     min-width: 42px;
 
     border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -847,282 +659,830 @@ div[data-testid="stFormSubmitButton"] button:hover {
     font-weight: 600;
 }
 
-/* =====================================================
+
+/* ============================================================
    MAINTENANCE
-   ===================================================== */
+   ============================================================ */
 
 .maintenance-card {
     background: #ffffff;
-
     border: 1px solid #dce5ef;
-
     border-radius: 16px;
 
     padding: 22px;
-
     margin-bottom: 12px;
 
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
 }
-
 
 .maintenance-card-top {
     display: flex;
-
     justify-content: space-between;
-
     align-items: flex-start;
-
     gap: 20px;
 }
 
-
 .maintenance-request-number {
     color: #71839a;
-
     font-size: 11px;
-
     font-weight: 700;
-
-    letter-spacing: 0.4px;
-
+    letter-spacing: .4px;
     margin-bottom: 3px;
 }
 
-
 .maintenance-category {
     color: #071a35;
-
     font-size: 18px;
-
     font-weight: 700;
 }
 
-
 .maintenance-badges {
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: flex-end;
-
     gap: 7px;
 }
-
 
 .maintenance-status,
 .urgency-badge {
     display: inline-block;
-
     padding: 4px 10px;
-
     border-radius: 999px;
-
     font-size: 11px;
-
     font-weight: 650;
 }
 
-
-/* STATUS COLORS */
-
 .status-submitted {
     background: #e0f2fe;
-
     color: #0369a1;
 }
-
 
 .status-scheduled {
     background: #fef3c7;
-
     color: #b45309;
 }
 
-
 .status-in-progress {
     background: #dbeafe;
-
     color: #1d4ed8;
 }
 
-
 .status-completed {
     background: #dcfce7;
-
     color: #15803d;
 }
 
-
 .status-cancelled {
     background: #e5e7eb;
-
     color: #475569;
 }
 
-
-/* URGENCY */
-
 .urgency-low {
     background: #f1f5f9;
-
     color: #64748b;
 }
 
-
 .urgency-medium {
     background: #e0f2fe;
-
     color: #0369a1;
 }
 
-
 .urgency-high {
     background: #ffedd5;
-
     color: #c2410c;
 }
 
-
 .urgency-emergency {
     background: #fee2e2;
-
     color: #dc2626;
 }
 
-
-/* DESCRIPTION */
-
 .maintenance-description {
     color: #536b86;
-
     font-size: 14px;
-
     line-height: 1.55;
-
     margin-top: 16px;
-
     margin-bottom: 20px;
 }
 
-
-/* INFORMATION GRID */
-
 .maintenance-info-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
-
     padding-top: 16px;
-
-    border-top:
-        1px solid #edf1f5;
+    border-top: 1px solid #edf1f5;
 }
-
 
 .maintenance-info-grid div {
     min-width: 0;
 }
 
-
 .maintenance-info-grid span {
     display: block;
-
     color: #8a9bb0;
-
     font-size: 10px;
-
     font-weight: 600;
-
     text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-
+    letter-spacing: .5px;
     margin-bottom: 4px;
 }
 
-
 .maintenance-info-grid strong {
     display: block;
-
     color: #223b58;
-
     font-size: 12px;
-
     font-weight: 600;
-
     overflow-wrap: anywhere;
 }
 
-
-/* TIMELINE */
-
 .maintenance-timeline-item {
     display: flex;
-
     gap: 13px;
-
     padding: 10px 4px;
 }
 
-
 .timeline-dot {
     width: 10px;
-
     height: 10px;
-
     min-width: 10px;
-
     margin-top: 5px;
-
     border-radius: 50%;
-
     background: #1766ad;
-
-    box-shadow:
-        0 0 0 4px
-        #e6f0fa;
+    box-shadow: 0 0 0 4px #e6f0fa;
 }
-
 
 .timeline-content strong {
     color: #102542;
-
     font-size: 13px;
 }
-
 
 .timeline-content p {
     color: #60758f;
-
     font-size: 13px;
-
-    margin:
-        3px 0 4px 0;
+    margin: 3px 0 4px;
 }
-
 
 .timeline-content span {
     color: #91a1b5;
-
     font-size: 10px;
 }
 
 
-/* MOBILE */
+/* ============================================================
+   ANNOUNCEMENTS
+   ============================================================ */
 
-@media (
-    max-width: 900px
+.announcement-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+
+    padding: 22px;
+    margin-bottom: 12px;
+
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.announcement-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #e8f1fb;
+    color: #1766ad;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.announcement-maintenance {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.announcement-safety {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.announcement-events {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.announcement-community {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.announcement-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.announcement-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.announcement-heading h3 {
+    color: #071a35;
+    margin: 4px 0 8px;
+    font-size: 17px;
+}
+
+.announcement-category {
+    color: #73869e;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+}
+
+.announcement-priority {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.priority-normal {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.priority-important {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.priority-urgent {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.announcement-message {
+    color: #5f7590;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.announcement-meta {
+    color: #91a1b5;
+    font-size: 10px;
+}
+
+
+/* ============================================================
+   COMMUNITY NEWS
+   ============================================================ */
+
+.community-news-card {
+    display: flex;
+    gap: 18px;
+    padding: 22px;
+    margin-bottom: 12px;
+
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.community-news-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #e7f0fb;
+    color: #1766ad;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.community-news-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.community-news-meta-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    color: #8799ae;
+    font-size: 10px;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+.community-news-content h3 {
+    color: #071a35;
+    font-size: 17px;
+    margin: 7px 0;
+}
+
+.community-news-content p {
+    color: #5f7590;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.community-news-source {
+    color: #91a1b5;
+    font-size: 10px;
+}
+
+
+/* ============================================================
+   MY LEASE
+   ============================================================ */
+
+.lease-card {
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.lease-card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.lease-label {
+    display: block;
+    color: #8497ad;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    margin-bottom: 5px;
+}
+
+.lease-card-heading h3,
+.lease-progress-card h3,
+.lease-card h3 {
+    color: #071a35;
+    margin: 0 0 4px;
+    font-size: 18px;
+}
+
+.lease-status-active {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 999px;
+
+    background: #dcfce7;
+    color: #15803d;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.lease-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.lease-detail-grid div {
+    min-width: 0;
+}
+
+.lease-detail-grid span {
+    display: block;
+    color: #899aaf;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    margin-bottom: 4px;
+}
+
+.lease-detail-grid strong {
+    display: block;
+    color: #213a57;
+    font-size: 13px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+
+.lease-progress-card {
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    padding: 24px;
+    margin-bottom: 10px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.lease-progress-number {
+    color: #1766ad;
+    font-size: 42px;
+    font-weight: 750;
+    margin: 18px 0 8px;
+}
+
+.lease-progress-card p {
+    color: #647991;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.lease-days-box {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+
+    margin-top: 17px;
+    padding-top: 15px;
+
+    border-top: 1px solid #edf1f5;
+}
+
+.lease-days-box strong {
+    color: #071a35;
+    font-size: 24px;
+}
+
+.lease-days-box span {
+    color: #8497ad;
+    font-size: 12px;
+}
+
+.lease-history-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 5px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.lease-history-row:last-child {
+    border-bottom: none;
+}
+
+.lease-history-row div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.lease-history-row div:last-child {
+    text-align: right;
+}
+
+.lease-history-row strong {
+    color: #18314e;
+    font-size: 13px;
+}
+
+.lease-history-row span {
+    color: #899aaf;
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   RESIDENT PROFILE
+   ============================================================ */
+
+.profile-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.profile-large-avatar {
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #1766ad;
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.profile-summary-info {
+    min-width: 0;
+}
+
+.profile-summary-info h3 {
+    color: #071a35;
+    font-size: 20px;
+    margin: 0 0 4px;
+}
+
+.profile-summary-info p {
+    color: #71849b;
+    font-size: 13px;
+    margin: 0 0 9px;
+}
+
+.profile-summary-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.profile-summary-meta span {
+    background: #edf4fb;
+    color: #315778;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.profile-form-section {
+    color: #071a35;
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e7edf4;
+}
+
+[data-testid="stTextInput"] label,
+[data-testid="stSelectbox"] label {
+    color: #263f5b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+div[data-testid="stForm"]
+div[data-testid="stFormSubmitButton"] button {
+    background: #153f78;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    min-height: 44px;
+    font-weight: 650;
+}
+
+div[data-testid="stForm"]
+div[data-testid="stFormSubmitButton"] button:hover {
+    background: #0f315f;
+    color: #ffffff;
+    border: none;
+}
+
+
+/* ============================================================
+   SECURITY
+   ============================================================ */
+
+.security-session-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 16px;
+
+    padding: 22px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .04);
+}
+
+.security-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #e7f0fb;
+    color: #1766ad;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.security-session-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.security-label {
+    display: block;
+    color: #8497ad;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    margin-bottom: 3px;
+}
+
+.security-session-body h3 {
+    color: #071a35;
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.security-session-body p {
+    color: #71849b;
+    margin: 0;
+    font-size: 12px;
+}
+
+.security-current-badge {
+    background: #dcfce7;
+    color: #15803d;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.security-event-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    background: #ffffff;
+    border: 1px solid #dce5ef;
+    border-radius: 14px;
+
+    padding: 17px 20px;
+    margin-bottom: 9px;
+
+    box-shadow: 0 2px 5px rgba(0, 25, 55, .03);
+}
+
+.security-event-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #edf4fb;
+    color: #1766ad;
+
+    font-weight: 700;
+}
+
+.security-event-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.security-event-body h4 {
+    color: #102542;
+    margin: 0 0 3px;
+    font-size: 14px;
+}
+
+.security-event-body p {
+    color: #60758f;
+    margin: 0 0 3px;
+    font-size: 12px;
+}
+
+.security-event-body span {
+    color: #91a1b5;
+    font-size: 10px;
+}
+
+.security-success-badge {
+    background: #dcfce7;
+    color: #15803d;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   MATCH DASHBOARD CARD HOVER BEHAVIOR
+   ============================================================ */
+
+:is(
+    .metric-card,
+    .content-card,
+    .payment-summary-card,
+    .notification-card,
+    .maintenance-card,
+    .announcement-card,
+    .community-news-card,
+    .lease-card,
+    .lease-progress-card,
+    .profile-summary-card,
+    .security-session-card,
+    .security-event-card
 ) {
+    min-width: 0;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+:is(
+    .metric-card,
+    .content-card,
+    .payment-summary-card,
+    .notification-card,
+    .maintenance-card,
+    .announcement-card,
+    .community-news-card,
+    .lease-card,
+    .lease-progress-card,
+    .profile-summary-card,
+    .security-session-card,
+    .security-event-card
+):hover {
+    transform: translateY(-2px);
+    border-color: #b9ceeb;
+
+    box-shadow: 0 9px 25px rgba(12, 38, 77, .12);
+}
+
+
+/* ============================================================
+   RESPONSIVE LAYOUT
+   ============================================================ */
+
+@media (max-width: 1024px) {
+
+    .block-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .page-header {
+        margin-left: -2rem;
+        margin-right: -2rem;
+    }
+
+    .metric-card {
+        padding: 18px;
+    }
+
+    .content-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 900px) {
 
     .maintenance-info-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .maintenance-card-top {
@@ -1134,931 +1494,80 @@ div[data-testid="stFormSubmitButton"] button:hover {
     }
 }
 
-/* =====================================================
-   ANNOUNCEMENTS
-   ===================================================== */
+@media (max-width: 800px) {
 
-.announcement-card {
-    display: flex;
+    .lease-detail-grid {
+        grid-template-columns: 1fr;
+    }
 
-    gap: 18px;
+    .lease-card-heading {
+        flex-direction: column;
+    }
 
-    align-items: flex-start;
-
-    padding: 22px;
-
-    margin-bottom: 12px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
+    .profile-summary-card {
+        align-items: flex-start;
+    }
 }
 
+@media (max-width: 768px) {
 
-.announcement-icon {
-    width: 44px;
+    .block-container {
+        padding: 1rem 1rem 2rem;
+    }
 
-    height: 44px;
+    .page-header {
+        margin-top: 0;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding: 14px 16px;
+    }
 
-    min-width: 44px;
+    .page-title {
+        font-size: 24px;
+    }
 
-    display: flex;
+    .page-description {
+        font-size: 13px;
+    }
 
-    align-items: center;
+    .metric-card {
+        min-height: 120px;
+        padding: 16px;
+    }
 
-    justify-content: center;
+    .metric-value {
+        font-size: 23px;
+    }
 
-    border-radius: 50%;
+    .content-card {
+        padding: 18px;
+    }
 
-    background: #e8f1fb;
+    .login-brand {
+        margin-top: 1.5rem;
+    }
 
-    color: #1766ad;
+    .login-heading h2 {
+        font-size: 23px;
+    }
 
-    font-size: 19px;
-
-    font-weight: 700;
+    .login-moon {
+        width: 56px;
+        height: 56px;
+        font-size: 30px;
+    }
 }
 
-
-.announcement-maintenance {
-    background: #dbeafe;
-
-    color: #2563eb;
-}
-
-
-.announcement-safety {
-    background: #fee2e2;
-
-    color: #dc2626;
-}
-
-
-.announcement-events {
-    background: #fef3c7;
-
-    color: #b45309;
-}
-
-
-.announcement-community {
-    background: #dcfce7;
-
-    color: #15803d;
-}
-
-
-.announcement-body {
-    flex: 1;
-}
-
-
-.announcement-heading {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: 16px;
-}
-
-
-.announcement-heading h3 {
-    color: #071a35;
-
-    margin:
-        4px 0 8px 0;
-
-    font-size: 17px;
-}
-
-
-.announcement-category {
-    color: #73869e;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.6px;
-}
-
-
-.announcement-priority {
-    display: inline-block;
-
-    padding: 4px 10px;
-
-    border-radius: 999px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-
-.priority-normal {
-    background: #f1f5f9;
-
-    color: #64748b;
-}
-
-
-.priority-important {
-    background: #fef3c7;
-
-    color: #b45309;
-}
-
-
-.priority-urgent {
-    background: #fee2e2;
-
-    color: #dc2626;
-}
-
-
-.announcement-message {
-    color: #5f7590;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-    margin-bottom: 10px;
-}
-
-
-.announcement-meta {
-    color: #91a1b5;
-
-    font-size: 10px;
-}
-
-/* =====================================================
-   COMMUNITY NEWS
-   ===================================================== */
-
-.community-news-card {
-    display: flex;
-
-    gap: 18px;
-
-    padding: 22px;
-
-    margin-bottom: 12px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
-}
-
-
-.community-news-icon {
-    width: 46px;
-
-    height: 46px;
-
-    min-width: 46px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background: #e7f0fb;
-
-    color: #1766ad;
-
-    font-size: 20px;
-
-    font-weight: 700;
-}
-
-
-.community-news-content {
-    flex: 1;
-}
-
-
-.community-news-meta-top {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    color: #8799ae;
-
-    font-size: 10px;
-
-    font-weight: 650;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.4px;
-}
-
-
-.community-news-content h3 {
-    color: #071a35;
-
-    font-size: 17px;
-
-    margin:
-        7px 0 7px 0;
-}
-
-
-.community-news-content p {
-    color: #5f7590;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-    margin:
-        0 0 10px 0;
-}
-
-
-.community-news-source {
-    color: #91a1b5;
-
-    font-size: 10px;
-}
-
-
-@media (
-    max-width: 700px
-) {
+@media (max-width: 700px) {
 
     .announcement-heading,
     .community-news-meta-top {
         flex-direction: column;
     }
-}
-
-/* =====================================================
-   MY LEASE
-   ===================================================== */
-
-.lease-card {
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 16px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
-}
-
-
-.lease-card-heading {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: 16px;
-
-    margin-bottom: 22px;
-}
-
-
-.lease-label {
-    display: block;
-
-    color: #8497ad;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.8px;
-
-    margin-bottom: 5px;
-}
-
-
-.lease-card-heading h3,
-.lease-progress-card h3,
-.lease-card h3 {
-    color: #071a35;
-
-    margin:
-        0 0 4px 0;
-
-    font-size: 18px;
-}
-
-
-.lease-status-active {
-    display: inline-block;
-
-    padding:
-        5px 11px;
-
-    border-radius:
-        999px;
-
-    background:
-        #dcfce7;
-
-    color:
-        #15803d;
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-}
-
-
-.lease-detail-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0, 1fr)
-        );
-
-    gap: 20px;
-}
-
-
-.lease-detail-grid div {
-    min-width: 0;
-}
-
-
-.lease-detail-grid span {
-    display: block;
-
-    color: #899aaf;
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.4px;
-
-    margin-bottom: 4px;
-}
-
-
-.lease-detail-grid strong {
-    display: block;
-
-    color: #213a57;
-
-    font-size: 13px;
-
-    font-weight: 650;
-
-    overflow-wrap: anywhere;
-}
-
-
-/* LEASE PROGRESS */
-
-.lease-progress-card {
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 16px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
-
-    margin-bottom: 10px;
-}
-
-
-.lease-progress-number {
-    color: #1766ad;
-
-    font-size: 42px;
-
-    font-weight: 750;
-
-    margin:
-        18px 0 8px 0;
-}
-
-
-.lease-progress-card p {
-    color: #647991;
-
-    font-size: 13px;
-
-    line-height: 1.55;
-}
-
-
-.lease-days-box {
-    display: flex;
-
-    align-items: baseline;
-
-    gap: 7px;
-
-    margin-top: 17px;
-
-    padding-top: 15px;
-
-    border-top:
-        1px solid #edf1f5;
-}
-
-
-.lease-days-box strong {
-    color: #071a35;
-
-    font-size: 24px;
-}
-
-
-.lease-days-box span {
-    color: #8497ad;
-
-    font-size: 12px;
-}
-
-
-/* HISTORY */
-
-.lease-history-row {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    padding:
-        14px 5px;
-
-    border-bottom:
-        1px solid #edf1f5;
-}
-
-
-.lease-history-row:last-child {
-    border-bottom: none;
-}
-
-
-.lease-history-row div {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 3px;
-}
-
-
-.lease-history-row div:last-child {
-    text-align: right;
-}
-
-
-.lease-history-row strong {
-    color: #18314e;
-
-    font-size: 13px;
-}
-
-
-.lease-history-row span {
-    color: #899aaf;
-
-    font-size: 11px;
-}
-
-/* =====================================================
-   RESIDENT PROFILE
-   ===================================================== */
-
-.profile-summary-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 16px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
-}
-
-
-.profile-large-avatar {
-    width: 68px;
-
-    height: 68px;
-
-    min-width: 68px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        #1766ad;
-
-    color:
-        #ffffff;
-
-    font-size:
-        21px;
-
-    font-weight:
-        750;
-}
-
-
-.profile-summary-info h3 {
-    color: #071a35;
-
-    font-size: 20px;
-
-    margin:
-        0 0 4px 0;
-}
-
-
-.profile-summary-info p {
-    color: #71849b;
-
-    font-size: 13px;
-
-    margin:
-        0 0 9px 0;
-}
-
-
-.profile-summary-meta {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 7px;
-}
-
-
-.profile-summary-meta span {
-    background:
-        #edf4fb;
-
-    color:
-        #315778;
-
-    padding:
-        4px 9px;
-
-    border-radius:
-        999px;
-
-    font-size:
-        10px;
-
-    font-weight:
-        650;
-}
-
-
-.profile-form-section {
-    color: #071a35;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    padding-bottom: 8px;
-
-    margin-bottom: 4px;
-
-    border-bottom:
-        1px solid #e7edf4;
-}
-
-
-/* FORM FIELD LABELS */
-
-[data-testid="stTextInput"]
-label,
-[data-testid="stSelectbox"]
-label {
-    color: #263f5b;
-
-    font-size: 12px;
-
-    font-weight: 600;
-}
-
-
-/* SAVE PROFILE BUTTON */
-
-div[data-testid="stForm"]
-div[data-testid="stFormSubmitButton"]
-button {
-    background:
-        #153f78;
-
-    color:
-        #ffffff;
-
-    border:
-        none;
-
-    border-radius:
-        8px;
-
-    min-height:
-        44px;
-
-    font-weight:
-        650;
-}
-
-
-div[data-testid="stForm"]
-div[data-testid="stFormSubmitButton"]
-button:hover {
-    background:
-        #0f315f;
-
-    color:
-        #ffffff;
-
-    border:
-        none;
-}
-
-
-/* RESPONSIVE */
-
-@media (
-    max-width: 800px
-) {
-
-    .lease-detail-grid {
-        grid-template-columns:
-            1fr;
-    }
-
-    .lease-card-heading {
-        flex-direction:
-            column;
-    }
-
-    .profile-summary-card {
-        align-items:
-            flex-start;
-    }
-}
-
-/* =====================================================
-   SECURITY
-   ===================================================== */
-
-.security-session-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 16px;
-
-    padding: 22px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.04);
-}
-
-
-.security-icon {
-    width: 46px;
-    height: 46px;
-
-    min-width: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #e7f0fb;
-
-    color: #1766ad;
-
-    font-size: 20px;
-
-    font-weight: 700;
-}
-
-
-.security-session-body {
-    flex: 1;
-}
-
-
-.security-label {
-    display: block;
-
-    color: #8497ad;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.7px;
-
-    margin-bottom: 3px;
-}
-
-
-.security-session-body h3 {
-    color: #071a35;
-
-    margin: 0 0 4px 0;
-
-    font-size: 16px;
-}
-
-
-.security-session-body p {
-    color: #71849b;
-
-    margin: 0;
-
-    font-size: 12px;
-}
-
-
-.security-current-badge {
-    background: #dcfce7;
-
-    color: #15803d;
-
-    padding: 5px 11px;
-
-    border-radius: 999px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-
-/* SECURITY ACTIVITY */
-
-.security-event-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce5ef;
-
-    border-radius: 14px;
-
-    padding: 17px 20px;
-
-    margin-bottom: 9px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0, 25, 55, 0.03);
-}
-
-
-.security-event-icon {
-    width: 38px;
-    height: 38px;
-
-    min-width: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #edf4fb;
-
-    color: #1766ad;
-
-    font-weight: 700;
-}
-
-
-.security-event-body {
-    flex: 1;
-}
-
-
-.security-event-body h4 {
-    color: #102542;
-
-    margin: 0 0 3px 0;
-
-    font-size: 14px;
-}
-
-
-.security-event-body p {
-    color: #60758f;
-
-    margin: 0 0 3px 0;
-
-    font-size: 12px;
-}
-
-
-.security-event-body span {
-    color: #91a1b5;
-
-    font-size: 10px;
-}
-
-
-.security-success-badge {
-    background: #dcfce7;
-
-    color: #15803d;
-
-    padding: 4px 9px;
-
-    border-radius: 999px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-
-@media (
-    max-width: 700px
-) {
 
     .security-session-card,
     .security-event-card {
-        align-items:
-            flex-start;
+        align-items: flex-start;
     }
 
     .security-current-badge,
@@ -2067,6 +1576,270 @@ button:hover {
     }
 }
 
+@media (max-width: 600px) {
+
+    .maintenance-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-card,
+    .announcement-card,
+    .community-news-card {
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .payment-summary-card,
+    .maintenance-card,
+    .lease-card,
+    .lease-progress-card,
+    .profile-summary-card,
+    .security-session-card {
+        padding: 17px;
+    }
+
+    .summary-row,
+    .summary-total,
+    .lease-history-row {
+        gap: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    :is(
+        .metric-card,
+        .content-card,
+        .payment-summary-card,
+        .notification-card,
+        .maintenance-card,
+        .announcement-card,
+        .community-news-card,
+        .lease-card,
+        .lease-progress-card,
+        .profile-summary-card,
+        .security-session-card,
+        .security-event-card
+    ) {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+
+/* ================================================
+   ADMIN SIDEBAR — PROFILE AND SIGN OUT
+   ================================================ */
+
+/* Keep administrator profile aligned left */
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-profile {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 9px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Prevent long email addresses from overflowing */
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-details {
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-unit {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Full-width admin Sign Out button */
+
+[data-testid="stSidebar"]
+.st-key-admin_signout_full button {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    min-height: 36px !important;
+
+    gap: 10px !important;
+    padding: 7px 12px !important;
+
+    background: #1c2c43 !important;
+    color: #d5e1ef !important;
+
+    border: 1px solid #2b3e55 !important;
+    border-radius: 8px !important;
+
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+}
+
+/* Always show Sign Out text */
+
+[data-testid="stSidebar"]
+.st-key-admin_signout_full button p {
+    display: block !important;
+    margin: 0 !important;
+    color: inherit !important;
+    font-size: 12px !important;
+}
+
+/* Consistent logout icon */
+
+[data-testid="stSidebar"]
+.st-key-admin_signout_full button
+span[data-testid="stIconMaterial"] {
+    font-size: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Hover effect */
+
+[data-testid="stSidebar"]
+.st-key-admin_signout_full button:hover {
+    background: #283b54 !important;
+    color: #ffffff !important;
+    border-color: #3c5878 !important;
+}
+
+
 /* =====================================================
-   END OF BLUE MOON APARTMENTS THEME
+   RESIDENT SIDEBAR — FULL WIDTH SIGN OUT BUTTON
    ===================================================== */
+
+/* Add spacing below resident profile */
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-profile {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    gap: 9px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Protect resident profile from overflow */
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-details {
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-name,
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_footer
+.resident-unit {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Full-width resident logout */
+
+[data-testid="stSidebar"]
+.st-key-resident_signout_full button {
+    display: flex !important;
+    flex-direction: row !important;
+
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    min-height: 36px !important;
+
+    gap: 10px !important;
+
+    padding: 7px 12px !important;
+
+    background: #1c2c43 !important;
+    color: #d5e1ef !important;
+
+    border: 1px solid #2b3e55 !important;
+    border-radius: 8px !important;
+
+    font-size: 12px !important;
+    font-weight: 500 !important;
+
+    text-align: left !important;
+    box-shadow: none !important;
+}
+
+/* Always display Sign Out label */
+
+[data-testid="stSidebar"]
+.st-key-resident_signout_full button
+[data-testid="stMarkdownContainer"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: auto !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+[data-testid="stSidebar"]
+.st-key-resident_signout_full button p {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: inherit !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+
+    text-align: left !important;
+}
+
+/* Logout icon alignment */
+
+[data-testid="stSidebar"]
+.st-key-resident_signout_full button
+span[data-testid="stIconMaterial"] {
+    width: 18px !important;
+    min-width: 18px !important;
+
+    flex-shrink: 0 !important;
+
+    font-size: 18px !important;
+    color: inherit !important;
+}
+
+/* Hover effect */
+
+[data-testid="stSidebar"]
+.st-key-resident_signout_full button:hover {
+    background: #283b54 !important;
+    color: #ffffff !important;
+    border-color: #3c5878 !important;
+}
+
+/* Keyboard accessibility */
+
+[data-testid="stSidebar"]
+.st-key-resident_signout_full button:focus-visible {
+    outline: 2px solid #4b9bff !important;
+    outline-offset: 2px;
+}
+
+
+
+/* ============================================================
+   END OF BLUE MOON APARTMENTS MAIN THEME
+   ============================================================ */

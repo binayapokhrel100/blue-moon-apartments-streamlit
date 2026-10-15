@@ -1,0 +1,293 @@
+
+/* ===========================================================
+   BLUE MOON APARTMENTS — SPRINT 09 ADMIN DASHBOARD
+   Scoped to Admin, independent from resident dashboard.css
+   =========================================================== */
+
+/* Match full-width resident pages. */
+.block-container:has(.st-key-bm_admin_page),
+[data-testid="stMainBlockContainer"]:has(.st-key-bm_admin_page),
+[data-testid="stAppViewBlockContainer"]:has(.st-key-bm_admin_page) {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 16px clamp(16px, 2vw, 38px) 36px !important;
+}
+
+.st-key-bm_admin_page {
+    width: 100%;
+    min-width: 0;
+}
+
+.st-key-bm_admin_header {
+    background: linear-gradient(115deg, #091b37 0%, #153665 72%, #1c4a80 100%);
+    border: 1px solid #244875;
+    border-radius: 17px;
+    padding: 22px 25px;
+    box-shadow: 0 10px 25px rgba(15, 41, 79, .10);
+}
+
+.bm-admin-eyebrow {
+    color: #a7c7ef;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+    margin-bottom: 5px;
+}
+
+.bm-admin-title {
+    color: #ffffff;
+    font-size: clamp(25px, 2.6vw, 34px);
+    line-height: 1.2;
+    font-weight: 800;
+    margin: 0 0 7px;
+}
+
+.bm-admin-subtitle {
+    color: #d3e2f6;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.st-key-bm_admin_header [data-testid="stButton"] button {
+    border-radius: 9px;
+    min-height: 39px;
+    width: 100%;
+    background: #ffffff18;
+    color: #f1f7ff;
+    border: 1px solid #ffffff42;
+    font-weight: 700;
+}
+
+.st-key-bm_admin_header [data-testid="stButton"] button:hover {
+    color: white;
+    background: #ffffff35;
+    border-color: #ffffff72;
+}
+
+.bm-admin-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin: 22px 0 9px;
+    color: #142947;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.bm-admin-section-heading span {
+    color: #8090a6;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.bm-admin-metric {
+    min-height: 132px;
+    border-radius: 14px;
+    border: 1px solid #dbe5f0;
+    background: #ffffff;
+    padding: 18px 20px;
+    box-shadow: 0 3px 9px rgba(10, 30, 60, .035);
+    border-top: 3px solid #3978c9;
+    min-width: 0;
+}
+
+.bm-admin-metric.green { border-top-color: #21a579; }
+.bm-admin-metric.amber { border-top-color: #e2a63d; }
+.bm-admin-metric.blue { border-top-color: #3978c9; }
+
+.bm-admin-metric-label,
+.bm-admin-metric small,
+.bm-admin-metric strong {
+    display: block;
+}
+
+.bm-admin-metric-label {
+    color: #71829b;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.bm-admin-metric strong {
+    color: #102747;
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 800;
+    margin: 9px 0 4px;
+    overflow-wrap: anywhere;
+}
+
+.bm-admin-metric small {
+    color: #8695a8;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.bm-admin-panel {
+    background: white;
+    border: 1px solid #dbe5f0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 13px;
+    box-shadow: 0 3px 9px rgba(10, 30, 60, .035);
+    min-width: 0;
+}
+
+.bm-admin-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 13px;
+}
+
+.bm-admin-panel-heading h3 {
+    color: #122948;
+    font-size: 15px;
+    font-weight: 800;
+    margin: 0 0 4px;
+}
+
+.bm-admin-panel-heading p {
+    color: #8797ab;
+    font-size: 11px;
+    margin: 0;
+}
+
+.bm-admin-mini-icon {
+    display: grid;
+    place-items: center;
+    background: #e9f1ff;
+    border-radius: 9px;
+    min-width: 31px;
+    height: 31px;
+    font-size: 15px;
+}
+
+.bm-admin-list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 13px;
+    border-bottom: 1px solid #edf1f7;
+    padding: 12px 0;
+}
+
+.bm-admin-list-row:last-child { border-bottom: none; }
+
+.bm-admin-list-copy { min-width: 0; }
+
+.bm-admin-list-copy strong,
+.bm-admin-list-copy span,
+.bm-admin-list-copy small {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.bm-admin-list-copy strong {
+    color: #17304e;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.bm-admin-list-copy span {
+    color: #5c7190;
+    font-size: 11px;
+    line-height: 1.45;
+    margin-top: 5px;
+}
+
+.bm-admin-list-copy small {
+    color: #92a0b3;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.bm-admin-badge {
+    display: inline-block;
+    flex: 0 0 auto;
+    color: #476789;
+    background: #e9eef6;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.bm-admin-badge.done { color: #197c53; background: #ddf6e9; }
+.bm-admin-badge.pending { color: #a77620; background: #fff3dc; }
+.bm-admin-badge.active { color: #2863a7; background: #e1efff; }
+
+.bm-admin-payment-end {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.bm-admin-payment-end strong {
+    color: #122c4d;
+    font-size: 13px;
+}
+
+.bm-admin-occupancy-number {
+    font-size: 31px;
+    font-weight: 800;
+    color: #12335e;
+    margin: 9px 0 11px;
+}
+
+.bm-admin-progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background: #e9f0f8;
+    overflow: hidden;
+}
+
+.bm-admin-progress > div {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #248dc0, #22a579);
+}
+
+.bm-admin-occupancy-details {
+    display: flex;
+    justify-content: space-between;
+    color: #697e99;
+    margin-top: 13px;
+    font-size: 11px;
+}
+
+.bm-admin-occupancy-details b { color: #1c3e68; }
+
+.bm-admin-empty {
+    color: #7f90a6;
+    font-size: 12px;
+    padding: 12px 0;
+}
+
+.bm-admin-footnote {
+    color: #8597ae;
+    font-size: 11px;
+    margin: 12px 0 18px;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .st-key-bm_admin_header { padding: 19px; }
+    .bm-admin-metric { min-height: 110px; padding: 14px; }
+    .bm-admin-panel { padding: 15px; }
+}
+
+@media (max-width: 600px) {
+    .bm-admin-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .bm-admin-list-row { align-items: flex-start; }
+    .bm-admin-metric strong { font-size: 22px; }
+}

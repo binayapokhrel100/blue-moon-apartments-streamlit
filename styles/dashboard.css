@@ -1,0 +1,557 @@
+
+/* ==================================================
+   BLUE MOON APARTMENTS
+   DASHBOARD STYLING
+   ================================================== */
+
+
+/* ==================================================
+   RESPONSIVE DASHBOARD WIDTH FIX
+   Full desktop width without changing the design
+   ================================================== */
+
+/* Override Streamlit's default maximum content width
+   only when the Dashboard is displayed. */
+
+@media (min-width: 1024px) {
+
+    [data-testid="stMainBlockContainer"]:has(.st-key-bm8_page),
+    [data-testid="stAppViewBlockContainer"]:has(.st-key-bm8_page),
+    .block-container:has(.st-key-bm8_page) {
+        width: 100% !important;
+        max-width: none !important;
+
+        padding-left: clamp(
+            16px,
+            2vw,
+            38px
+        ) !important;
+
+        padding-right: clamp(
+            16px,
+            2vw,
+            38px
+        ) !important;
+    }
+
+    /* Keep the existing header aligned
+       with the expanded Dashboard. */
+
+    .block-container:has(.st-key-bm8_page) .page-header {
+        margin-left: calc(
+            0px - clamp(16px, 2vw, 38px)
+        );
+
+        margin-right: calc(
+            0px - clamp(16px, 2vw, 38px)
+        );
+    }
+}
+
+/* Remove the original 1120px Dashboard limitation. */
+
+.st-key-bm8_page {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* ==================================================
+   HERO SECTION
+   ================================================== */
+
+.st-key-bm8_hero {
+    background: linear-gradient(
+        112deg,
+        #08172f 0%,
+        #0e2854 64%,
+        #1b3e77 100%
+    );
+
+    border-radius: 20px;
+    padding: 24px 26px 18px;
+
+    box-shadow: 0 10px 30px rgba(16,39,75,.12);
+}
+
+.bm8-hero {
+    position: relative;
+    color: white;
+    overflow: hidden;
+}
+
+.bm8-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-image: radial-gradient(
+        circle,
+        rgba(255,255,255,.28) 1px,
+        transparent 1.6px
+    );
+
+    background-size: 123px 67px;
+    opacity: .65;
+}
+
+.bm8-eyebrow {
+    color: #a9c4e7;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.bm8-hero-name {
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: white;
+    margin: 5px 0 9px;
+}
+
+.bm8-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.bm8-pill {
+    background: #ffffff19;
+    border: 1px solid #ffffff30;
+    border-radius: 999px;
+
+    color: #eaf2ff;
+    font-size: 11px;
+    padding: 5px 10px;
+}
+
+.bm8-pill-green {
+    background: #0d604e77;
+    border-color: #3bb78b77;
+    color: #cbffe5;
+}
+
+
+/* ==================================================
+   HERO STATISTICS
+   ================================================== */
+
+.bm8-hero-grid {
+    display: grid;
+
+    grid-template-columns: repeat(
+        3,
+        minmax(0, 1fr)
+    );
+
+    gap: 10px;
+}
+
+.bm8-hero-stat {
+    background: #ffffff12;
+    border: 1px solid #ffffff25;
+    border-radius: 12px;
+
+    padding: 12px 14px;
+    min-height: 91px;
+}
+
+.bm8-hero-stat small {
+    display: block;
+    color: #aebfda;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+}
+
+.bm8-hero-stat strong {
+    display: block;
+
+    font-size: 21px;
+    font-weight: 800;
+    color: white;
+
+    margin: 4px 0;
+}
+
+.bm8-hero-stat span {
+    color: #cfdef4;
+    font-size: 11px;
+}
+
+
+/* ==================================================
+   HERO BUTTONS
+   ================================================== */
+
+.st-key-bm8_hero [data-testid="stButton"] button {
+    border-radius: 10px;
+    min-height: 41px;
+    font-weight: 700;
+}
+
+.st-key-bm8_hero
+[data-testid="stButton"]
+button[kind="primary"] {
+    background: #206bb9;
+    color: white;
+    border: 0;
+}
+
+
+/* ==================================================
+   FOUR QUICK-STAT CARDS
+   ================================================== */
+
+.bm8-quick-grid {
+    display: grid;
+
+    grid-template-columns: repeat(
+        4,
+        minmax(0, 1fr)
+    );
+
+    gap: 11px;
+    margin: 8px 0 7px;
+}
+
+.bm8-quick {
+    border: 1px solid #dce4ef;
+    background: white;
+
+    border-radius: 13px;
+    padding: 14px;
+    min-height: 108px;
+}
+
+.bm8-quick-icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.bm8-green {
+    color: #158657;
+    background: #dff7ea;
+}
+
+.bm8-blue {
+    color: #2d6aca;
+    background: #e2ecff;
+}
+
+.bm8-yellow {
+    color: #bb8018;
+    background: #fff1d4;
+}
+
+.bm8-sky {
+    color: #3566aa;
+    background: #e5eefb;
+}
+
+.bm8-quick small {
+    display: block;
+    color: #75869c;
+    font-size: 11px;
+}
+
+.bm8-quick strong {
+    display: block;
+    color: #112443;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.bm8-quick span {
+    display: block;
+    color: #8291a5;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+
+/* ==================================================
+   MAIN DASHBOARD PANELS
+   ================================================== */
+
+.st-key-bm8_maintenance,
+.st-key-bm8_payments,
+.st-key-bm8_announcements,
+.st-key-bm8_lease {
+    background: white;
+    border: 1px solid #d9e3f0;
+    border-radius: 14px;
+
+    padding: 16px 17px 12px;
+
+    box-shadow: 0 2px 5px #0c255017;
+    margin-bottom: 10px;
+}
+
+
+/* ==================================================
+   ASSISTANT PANEL
+   ================================================== */
+
+.st-key-bm8_assistant {
+    background: linear-gradient(
+        130deg,
+        #0a244b,
+        #183c73
+    );
+
+    border-radius: 14px;
+    padding: 17px;
+    margin-bottom: 10px;
+}
+
+.st-key-bm8_assistant
+[data-testid="stButton"] button {
+    background: #ffffff12;
+    color: #ecf4ff;
+
+    border: 1px solid #ffffff24;
+    border-radius: 9px;
+
+    text-align: left;
+    min-height: 34px;
+    font-size: 12px;
+}
+
+.st-key-bm8_maintenance
+[data-testid="stButton"]
+button[kind="primary"] {
+    background: #1f64af;
+    color: white;
+    border: none;
+    border-radius: 9px;
+}
+
+
+/* ==================================================
+   CONTENT HEADINGS
+   ================================================== */
+
+.bm8-heading {
+    font-weight: 800;
+    font-size: 14px;
+    color: #122440;
+
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    margin-bottom: 11px;
+}
+
+.bm8-heading-icon {
+    width: 28px;
+    height: 28px;
+
+    background: #e4edff;
+    color: #2665b7;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 13px;
+}
+
+
+/* ==================================================
+   CONTENT ROWS
+   ================================================== */
+
+.bm8-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+    padding: 11px 0;
+
+    border-bottom: 1px solid #edf1f6;
+}
+
+.bm8-row:last-child {
+    border-bottom: none;
+}
+
+.bm8-row-text {
+    min-width: 0;
+}
+
+.bm8-row-text strong {
+    display: block;
+
+    color: #102440;
+    font-size: 12px;
+
+    overflow-wrap: anywhere;
+}
+
+.bm8-row-text span {
+    display: block;
+    margin-top: 4px;
+
+    color: #6a7d98;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* ==================================================
+   STATUS BADGES
+   ================================================== */
+
+.bm8-tag {
+    border-radius: 100px;
+    padding: 5px 9px;
+
+    background: #e7f0fe;
+    color: #255ba7;
+
+    font-size: 10px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.bm8-tag-good {
+    background: #dff7e9;
+    color: #148354;
+}
+
+.bm8-tag-warn {
+    background: #fff0d5;
+    color: #a76d19;
+}
+
+.bm8-empty {
+    color: #6a7d98;
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+
+/* ==================================================
+   ASSISTANT TEXT
+   ================================================== */
+
+.bm8-assistant-title {
+    font-size: 15px;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.bm8-assistant-detail {
+    color: #cfddf3;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0 0 7px;
+}
+
+.bm8-assistant-status {
+    color: #82e8b8;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+
+/* ==================================================
+   LEASE OVERVIEW
+   ================================================== */
+
+.bm8-lease-title {
+    font-size: 10px;
+    font-weight: 800;
+    color: #6d81a1;
+    letter-spacing: 1.1px;
+    margin-bottom: 9px;
+}
+
+.bm8-lease-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 5px 0;
+    font-size: 12px;
+}
+
+.bm8-lease-row span {
+    color: #6c7f9b;
+}
+
+.bm8-lease-row strong {
+    color: #132849;
+    text-align: right;
+}
+
+
+/* ==================================================
+   RESPONSIVE LAYOUT
+   Preserve your existing small-screen design
+   ================================================== */
+
+@media (max-width: 790px) {
+
+    .bm8-quick-grid {
+        grid-template-columns: repeat(
+            2,
+            minmax(0, 1fr)
+        );
+    }
+}
+
+@media (max-width: 580px) {
+
+    .bm8-hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bm8-hero-name {
+        font-size: 25px;
+    }
+
+    .st-key-bm8_hero {
+        padding: 18px;
+    }
+}
+
+
+/* ==================================================
+   FIX DASHBOARD HEADER / BREADCRUMB CLIPPING
+   ================================================== */
+
+.block-container:has(.st-key-bm8_page) .page-header,
+[data-testid="stMainBlockContainer"]:has(.st-key-bm8_page) .page-header,
+[data-testid="stAppViewBlockContainer"]:has(.st-key-bm8_page) .page-header {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    overflow: visible !important;
+}
+
+
+/* ==================================================
+   END OF DASHBOARD STYLING
+   ================================================== */

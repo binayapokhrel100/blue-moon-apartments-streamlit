@@ -1,37 +1,93 @@
+
+# ==================================================
+# BLUE MOON APARTMENTS — GITIGNORE
+# ==================================================
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 env/
+ENV/
 
-# Environment variables
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
 
-# IDE
+# Streamlit secrets
+.streamlit/secrets.toml
+.streamlit/**/secrets.toml
+
+# IDE / Editor
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# macOS
+# Operating system
 .DS_Store
+Thumbs.db
+Desktop.ini
 
-# Testing
+# Testing and coverage
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
 
-# Streamlit
-.streamlit/secrets.toml
-
-# Database
+# SQLite databases
 *.db
+*.db-journal
+*.db-wal
+*.db-shm
 *.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
 *.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
 
-# Logs
-*.log
-
+# Database backup files
 *.db.backup
+*.sqlite.backup
+*.sqlite3.backup
+*.db.bak
+*.sqlite.bak
+*.sqlite3.bak
+*.backup
+*.bak
+
+# Local backup directories
+backups/
+backup/
+BlueMoonSecureBackups/
+
+# Runtime logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Private certificate and key files
+*.key
+*.p12
+*.pfx
+
+# Local credential artifacts
+credentials.json
+service-account.json
+``

@@ -1,0 +1,70 @@
+
+/* ==========================================================
+   BLUE MOON APARTMENTS
+   ADMINISTRATOR SIDEBAR STYLES
+   File: styles/admin_sidebar.css
+   ========================================================== */
+
+
+/* ==========================================================
+   ACTIVE NAVIGATION BUTTON
+   Applies to Overview, Payments, My Account, etc.
+   ========================================================== */
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"]
+button[kind="primary"],
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"]
+button[data-testid="stBaseButton-primary"] {
+
+    position: relative;
+
+    background: #28364b !important;
+    color: #ffffff !important;
+
+    font-weight: 650 !important;
+
+}
+
+
+/* Blue indicator on the active sidebar item */
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"]
+button[kind="primary"]::before,
+
+[data-testid="stSidebar"]
+[class*="st-key-nav_"]
+button[data-testid="stBaseButton-primary"]::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 19%;
+
+    height: 62%;
+    width: 3px;
+
+    border-radius: 4px;
+
+    background: #2b8cff;
+
+}
+
+
+/* ==========================================================
+   ADMINISTRATOR ROLE BADGE
+   ========================================================== */
+
+[data-testid="stSidebar"]
+.st-key-bm_sidebar_layout
+.account-badge {
+
+    background: #123a62 !important;
+    color: #8ec5ff !important;
+
+}

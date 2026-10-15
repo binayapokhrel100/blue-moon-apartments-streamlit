@@ -1,0 +1,780 @@
+
+/* ============================================================
+   BLUE MOON APARTMENTS
+   LOGIN SCREENS
+   Portal Selection / Resident Login / Admin Preview
+   ============================================================ */
+
+
+/* ============================================================
+   LOGIN PAGE CANVAS
+   ============================================================ */
+
+/* Keep the entire login page background consistent */
+
+.stApp:has(.st-key-bm_auth_root),
+.stApp:has(.st-key-bm_auth_root) [data-testid="stAppViewContainer"],
+.stApp:has(.st-key-bm_auth_root) [data-testid="stMain"],
+.stApp:has(.st-key-bm_auth_root) header[data-testid="stHeader"] {
+    background: #eef3f9 !important;
+}
+
+/*
+   Center the login page within the available viewport.
+
+   The selector targets the actual Streamlit block-container
+   instead of assuming the application uses an HTML main tag.
+*/
+
+.stApp:has(.st-key-bm_auth_root)
+.block-container:has(.st-key-bm_auth_root) {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    min-height: calc(100dvh - 3.75rem) !important;
+    height: auto !important;
+
+    padding:
+        clamp(16px, 2dvh, 26px)
+        clamp(12px, 2vw, 30px) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/*
+   Expand Streamlit's inner content wrapper.
+
+   This is the element that contains the complete login card.
+   Center its content vertically within the available space.
+*/
+
+.stApp:has(.st-key-bm_auth_root)
+.block-container:has(.st-key-bm_auth_root)
+> div:has(.st-key-bm_auth_root) {
+    box-sizing: border-box;
+
+    width: 100% !important;
+    flex: 1 0 auto !important;
+    min-height: 0;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+/* Horizontally center the complete login experience */
+
+.st-key-bm_auth_root {
+    width: 100%;
+    max-width: 1340px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Main two-panel login card */
+
+.st-key-bm_auth_frame {
+    background: #ffffff;
+
+    border: 1px solid #dce5ef;
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 30px rgba(7, 31, 67, .09);
+}
+
+.st-key-bm_auth_frame [data-testid="stColumn"] {
+    min-width: 0;
+}
+
+
+/* ============================================================
+   SPLIT SCREEN LAYOUT
+   ============================================================ */
+
+.st-key-bm_auth_selection_visual,
+.st-key-bm_auth_resident_visual {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: min(
+        850px,
+        calc(100vh - 32px)
+    );
+
+    padding: clamp(30px, 5vw, 86px);
+
+    color: white;
+    position: relative;
+}
+
+/* Portal selection background image */
+
+.st-key-bm_auth_selection_visual {
+    background:
+        linear-gradient(
+            105deg,
+            rgba(5, 22, 44, .80),
+            rgba(7, 31, 65, .70)
+        ),
+        url(
+            "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1700&q=85"
+        ) center / cover no-repeat,
+        #0b2143;
+}
+
+/* Resident login navy panel */
+
+.st-key-bm_auth_resident_visual {
+    background: linear-gradient(
+        135deg,
+        #07162d,
+        #112e5c
+    );
+}
+
+/* Right-side white panels */
+
+.st-key-bm_auth_selection_panel,
+.st-key-bm_auth_resident_panel {
+    min-height: min(
+        850px,
+        calc(100vh - 32px)
+    );
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: clamp(24px, 3vw, 52px);
+
+    background: #ffffff;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.st-key-bm_auth_selection_panel
+[data-testid="stButton"] button,
+
+.st-key-bm_auth_resident_panel
+[data-testid="stButton"] button {
+    width: 100%;
+    border-radius: 11px;
+}
+
+/* Primary buttons */
+
+.st-key-bm_auth_selection_panel
+[data-testid="stButton"]
+button[kind="primary"],
+
+.st-key-bm_auth_resident_panel
+[data-testid="stFormSubmitButton"]
+button[kind="primary"] {
+    color: white;
+    background: #1a457f;
+    border-color: #1a457f;
+
+    font-weight: 700;
+}
+
+/* Primary button hover */
+
+.st-key-bm_auth_selection_panel
+[data-testid="stButton"]
+button[kind="primary"]:hover,
+
+.st-key-bm_auth_resident_panel
+[data-testid="stFormSubmitButton"]
+button[kind="primary"]:hover {
+    color: white;
+    background: #11335f;
+}
+
+
+/* ============================================================
+   BLUE MOON BRAND
+   ============================================================ */
+
+.bm-auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.bm-auth-brand strong {
+    display: block;
+
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+}
+
+.bm-auth-brand small {
+    display: block;
+
+    font-size: 10px;
+    letter-spacing: .6px;
+
+    color: #afc8e9;
+}
+
+/* Blue Moon logo */
+
+.bm-auth-mark,
+.bm-auth-admin-logo {
+    width: 37px;
+    height: 37px;
+
+    border-radius: 12px;
+
+    display: grid;
+    place-items: center;
+
+    background: #153f78;
+    color: white;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, .15);
+}
+
+
+/* ============================================================
+   PORTAL SELECTION — LEFT PANEL
+   ============================================================ */
+
+.bm-auth-visual-copy {
+    margin-top: 32px;
+}
+
+.bm-auth-visual-copy h1 {
+    color: white;
+
+    font-size: clamp(
+        30px,
+        3.1vw,
+        46px
+    );
+
+    font-weight: 850;
+    line-height: 1.17;
+    letter-spacing: -.9px;
+
+    margin: 0 0 14px;
+}
+
+.bm-auth-visual-copy h1 em {
+    color: #76b0ff;
+    font-style: normal;
+}
+
+.bm-auth-visual-copy p {
+    color: #c5d4e9;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    max-width: 365px;
+    margin: 0 0 23px;
+}
+
+/* Feature pills */
+
+.bm-auth-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+    max-width: 365px;
+}
+
+.bm-auth-pill-row span {
+    border: 1px solid #ffffff40;
+
+    color: #e8f2ff;
+    background: #ffffff14;
+
+    border-radius: 20px;
+
+    padding: 5px 9px;
+    font-size: 10px;
+}
+
+/* Carousel dots */
+
+.bm-auth-carousel-dots {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+    margin-top: 18px;
+}
+
+.bm-auth-carousel-dots b,
+.bm-auth-carousel-dots i {
+    height: 5px;
+    width: 5px;
+
+    border-radius: 10px;
+    background: #8ba7cc6e;
+}
+
+.bm-auth-carousel-dots b {
+    width: 22px;
+    background: #6baaff;
+}
+
+
+/* ============================================================
+   PORTAL SELECTION — RIGHT PANEL
+   ============================================================ */
+
+.bm-auth-panel-intro h2,
+.bm-auth-form-title h2 {
+    margin: 0 0 6px;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    color: #0b2243;
+}
+
+.bm-auth-panel-intro p,
+.bm-auth-form-title p {
+    margin: 0 0 17px;
+
+    color: #7185a0;
+    font-size: 12px;
+}
+
+/* Resident and Admin selection */
+
+.st-key-bm_auth_resident_choice,
+.st-key-bm_auth_admin_choice {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.st-key-bm_auth_resident_choice button,
+.st-key-bm_auth_admin_choice button {
+    background: white;
+
+    border: 1px solid #cbd9ed;
+
+    color: #102a50;
+    text-align: left;
+
+    min-height: 61px;
+
+    font-size: 14px;
+    font-weight: 750;
+
+    padding: 11px 14px;
+}
+
+.st-key-bm_auth_resident_choice button:hover,
+.st-key-bm_auth_admin_choice button:hover {
+    background: #f0f6ff;
+    border-color: #8bb6e8;
+}
+
+.bm-auth-option-note {
+    font-size: 10px;
+    color: #69819c;
+
+    margin: -5px 0 1px 15px;
+}
+
+/* Section divider */
+
+.bm-auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #8394ab;
+    font-size: 10px;
+
+    margin: 19px 0 8px;
+}
+
+.bm-auth-divider::before,
+.bm-auth-divider::after {
+    content: "";
+
+    height: 1px;
+
+    background: #d5deeb;
+
+    flex: 1;
+}
+
+/* Supporting text */
+
+.bm-auth-center-note,
+.bm-auth-legal {
+    text-align: center;
+
+    color: #7389a7;
+    font-size: 11px;
+}
+
+.bm-auth-legal {
+    margin-top: 19px;
+    font-size: 10px;
+}
+
+
+/* ============================================================
+   RESIDENT LOGIN — LEFT PANEL
+   ============================================================ */
+
+.bm-auth-resident-message {
+    margin-top: 28px;
+    max-width: 450px;
+}
+
+.bm-auth-resident-message h1 {
+    color: white;
+
+    font-size: clamp(
+        26px,
+        2.5vw,
+        37px
+    );
+
+    line-height: 1.17;
+    margin: 0 0 14px;
+}
+
+.bm-auth-resident-message p {
+    color: #c6d8f0;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    max-width: 430px;
+    margin: 0 0 25px;
+}
+
+/* Resident portal feature grid */
+
+.bm-auth-feature-grid {
+    display: grid;
+
+    grid-template-columns: repeat(
+        2,
+        minmax(0, 1fr)
+    );
+
+    gap: 10px;
+    max-width: 425px;
+}
+
+.bm-auth-feature-grid span {
+    background: #ffffff16;
+
+    border-radius: 13px;
+
+    color: #ecf3ff;
+    font-weight: 600;
+    font-size: 12px;
+
+    padding: 12px;
+}
+
+
+/* ============================================================
+   RESIDENT LOGIN — RIGHT PANEL
+   ============================================================ */
+
+.st-key-bm_auth_resident_panel
+[data-testid="stForm"] label,
+
+.st-key-bm_auth_admin_card label {
+    color: #243e63;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+/* Text inputs */
+
+.st-key-bm_auth_resident_panel input,
+.st-key-bm_auth_admin_card input {
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+/* Secondary navigation buttons */
+
+.st-key-bm_resident_back button,
+.st-key-bm_resident_forgot button,
+.st-key-bm_resident_activate button,
+.st-key-bm_admin_back button {
+    background: transparent !important;
+    border: none !important;
+
+    color: #426d9c !important;
+    box-shadow: none !important;
+
+    font-size: 12px;
+    padding-left: 0;
+}
+
+/* Resident form title */
+
+.bm-auth-form-title {
+    margin: 12px 0 10px;
+}
+
+.bm-auth-form-eyebrow {
+    font-size: 11px;
+    letter-spacing: .65px;
+
+    color: #46658d;
+    margin-bottom: 8px;
+}
+
+/* Resident security note */
+
+.bm-auth-security-note {
+    background: #f0f4fb;
+    color: #657c9d;
+
+    border-radius: 12px;
+    padding: 13px;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    margin-top: 14px;
+}
+
+
+/* ============================================================
+   ADMIN LOGIN PREVIEW
+   ============================================================ */
+
+.st-key-bm_auth_admin_layout {
+    max-width: 390px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    min-height: min(
+        840px,
+        calc(100vh - 28px)
+    );
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Admin heading */
+
+.bm-auth-admin-heading {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.bm-auth-admin-logo {
+    margin: 0 auto 11px;
+}
+
+.bm-auth-admin-heading h1 {
+    color: #0d2443;
+
+    margin: 0;
+    font-size: 23px;
+}
+
+.bm-auth-admin-heading p {
+    color: #6c83a1;
+
+    margin: 5px 0 0;
+    font-size: 12px;
+}
+
+/* Admin form card */
+
+.st-key-bm_auth_admin_card {
+    background: white;
+
+    border: 1px solid #c9d6e7;
+    border-radius: 13px;
+
+    padding: 19px;
+
+    box-shadow:
+        0 2px 4px #0b2c4b14;
+}
+
+/* Restricted access notice */
+
+.bm-auth-admin-notice {
+    padding-bottom: 12px;
+    margin-bottom: 7px;
+
+    border-bottom: 1px solid #d9e2ef;
+}
+
+.bm-auth-admin-notice strong {
+    display: block;
+
+    color: #143054;
+    font-size: 12px;
+}
+
+.bm-auth-admin-notice small {
+    display: block;
+
+    color: #798ba4;
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+/* Admin button */
+
+.st-key-bm_auth_admin_card
+[data-testid="stButton"]
+button[kind="primary"] {
+    min-height: 42px;
+
+    background: #1b3d70;
+    color: white;
+}
+
+.st-key-bm_auth_admin_layout .stAlert {
+    font-size: 12px;
+}
+
+
+/* ============================================================
+   TABLET RESPONSIVE LAYOUT
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    /* Stack left and right login panels */
+
+    .st-key-bm_auth_frame
+    [data-testid="stHorizontalBlock"] {
+        flex-direction: column;
+    }
+
+    .st-key-bm_auth_frame
+    [data-testid="stColumn"] {
+        width: 100% !important;
+        flex: 1 1 auto !important;
+    }
+
+    .st-key-bm_auth_selection_visual,
+    .st-key-bm_auth_resident_visual {
+        min-height: 340px;
+        padding: 38px 29px;
+    }
+
+    .st-key-bm_auth_selection_panel,
+    .st-key-bm_auth_resident_panel {
+        min-height: auto;
+        padding: 28px;
+    }
+
+    .bm-auth-feature-grid {
+        max-width: 480px;
+    }
+}
+
+
+/* ============================================================
+   MOBILE RESPONSIVE LAYOUT
+   ============================================================ */
+
+@media (max-width: 530px) {
+
+    .st-key-bm_auth_selection_visual,
+    .st-key-bm_auth_resident_visual {
+        padding: 28px 19px;
+        min-height: 300px;
+    }
+
+    .st-key-bm_auth_selection_panel,
+    .st-key-bm_auth_resident_panel {
+        padding: 24px 18px;
+    }
+
+    .bm-auth-visual-copy h1 {
+        font-size: 30px;
+    }
+
+    .bm-auth-feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bm-auth-feature-grid span {
+        font-size: 11px;
+        padding: 9px;
+    }
+
+    .st-key-bm_auth_admin_layout {
+        min-height: auto;
+        padding-top: 60px;
+    }
+}
+
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .st-key-bm_auth_root *,
+    .st-key-bm_auth_root *::before,
+    .st-key-bm_auth_root *::after {
+        transition: none !important;
+    }
+}
+
+
+/* ==================================================
+   FUNCTIONAL ADMIN LOGIN FORM
+   ================================================== */
+
+.st-key-bm_auth_admin_card
+[data-testid="stFormSubmitButton"] button {
+    width: 100%;
+    min-height: 42px;
+    background: #1b3d70;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.st-key-bm_auth_admin_card
+[data-testid="stFormSubmitButton"] button:hover {
+    background: #15335e;
+    color: white;
+    border: none;
+}
+
+
+/* ============================================================
+   END OF LOGIN STYLESHEET
+   ============================================================ */
